@@ -16,7 +16,7 @@ MAINTAINER Guillaume Petitpierre
 RUN apt-get update
 
 # Environment will run on port 50000, let's expose it
-EXPOSE 50000
+EXPOSE 5000
 
 # Install nginx + required packages
 RUN apt-get -y install nginx php5-fpm php5-cli php5-mcrypt git
