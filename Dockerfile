@@ -4,8 +4,8 @@
 # Created on 09/28/2016                #
 ########################################
 
-# Base image - Ubuntu 12.04 LTS
-FROM ubuntu:12.04
+# Base image - Ubuntu
+FROM ubuntu:16.04
 
 # Maintainer
 MAINTAINER Guillaume Petitpierre
@@ -26,7 +26,9 @@ RUN sh -c 'echo "mysql-server mysql-server/root_password password t00r" | debcon
 RUN sh -c 'echo "mysql-server mysql-server/root_password_again password t00r" | debconf-set-selections'
 
 # Install nginx + required packages
-RUN apt-get -y install nginx php5-fpm php5-cli php5-mcrypt git mysql-server
+RUN apt-get -y install nginx php-fpm php-cli php-mcrypt git mysql-server
+
+
 
 # Create directories
 RUN mkdir -p /var/www/laravel
@@ -34,15 +36,13 @@ RUN mkdir -p /var/www/laravel
 # Import the nginx config
 ADD ./configs/nginx /etc/nginx/sites-available/default
 
-# Modifying the php config.
-# Really hope that works...
-RUN sed -i -e 's/;cgi.fix_pathinfo=0/cgi.fix_pathinfo=1/g' /etc/php5/fpm/php.ini
-# That one too...
-RUN sed -i -e 's/listen = 127.0.0.1:9000/listen = \/var\/run\/php5-fpm.sock/g' /etc/php5/fpm/pool.d/www.conf
-
 RUN mkdir -p /opt/scripts
 
 ADD ./configs/start.sh /opt/scripts/start.sh
 
 # Import the project
 ADD ./code /var/www/laravel
+
+# Fix permissions
+RUN chgrp -R www-data /var/www/laravel
+RUN chmod -R ug+rwx /var/www/laravel/storage /var/www/laravel/bootstrap/cache
