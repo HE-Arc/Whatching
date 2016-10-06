@@ -6,7 +6,9 @@ Scripts currently works on Linux only.
 
 You have to install Docker.
 
-To launch the container run `./launch.sh`
+To launch the container:
+
+    $ docker-compose up -d
 
 Put all your code in the `code` directory.
 
