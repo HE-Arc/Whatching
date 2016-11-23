@@ -21,4 +21,12 @@ Route::get('/about', 'PagesController@about');
 Route::get('/user/{id}', 'UsersController@profile');
 Route::get('/user/{id}/stats', 'UsersController@statistics');
 Route::get('/user/{id}/films', 'UsersController@watchedFilms');
+Route::get('/user/search/{query}', 'UsersController@search');
+
+// Feed him
 Route::get('/feed', 'UsersController@feed');
+
+// Film related views
+Route::get('/film/{id}', 'FilmsController@film');
+Route::get('/film/search/{query}', 'FilmsController@search');
+Route::get('/suggest', 'FilmsController@suggestFilm');

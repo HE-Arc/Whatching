@@ -41,4 +41,12 @@ class UsersController extends Controller
       return view('users.watchedFilms', compact('id'));
     }
 
+    /**
+    * Search for users
+    *
+    */
+    public function search($query){
+      return view('users.search', compact('query'));
+    }
+
 }
