@@ -17,7 +17,7 @@ ENV DEBIAN_FRONTEND "noninteractive"
 # Update repositories
 RUN apt-get update
 
-# Environment will run on port 50000, let's expose it
+# Environment will run on port 5000, let's expose it
 EXPOSE 5000
 EXPOSE 3306
 
