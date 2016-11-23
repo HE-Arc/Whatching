@@ -17,4 +17,8 @@ class Film extends Model
     public function suggestions(){
       return $this->belongsToMany(Suggestion::class);
     }
+    public function users(){
+        return $this->belongsToMany(User::class, 'collections');
+    }
+
 }

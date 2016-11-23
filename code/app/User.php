@@ -44,10 +44,14 @@ class User extends Authenticatable
     }
 
     public function usersFollowed(){
-      return $this->hasMany(User::Class);
+      return $this->belongsToMany(User::Class, 'subscriptions', 'follower_id', 'followed_id');
     }
 
     public function usersFollowing(){
-      return $this->belongsToMany(User::class);
+      return $this->belongsToMany(User::class, 'subscriptions', 'follower_id', 'follower_id');
+    }
+
+    public function films(){
+      return $this->belongsToMany(Film::class, 'collections');
     }
 }

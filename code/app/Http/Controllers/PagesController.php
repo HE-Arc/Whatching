@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Auth; //Pour pouvoir utiliser les méthodes de Auth
 use App\Http\Requests;
 
 class PagesController extends Controller
@@ -15,6 +15,7 @@ class PagesController extends Controller
   */
   public function home()
   {
+    if(Auth::id() != null) return app('App\Http\Controllers\UsersController')->feed();
     return view('pages.home');
   }
 
