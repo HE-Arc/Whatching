@@ -15,10 +15,10 @@ class CreateTableSuggestions extends Migration
     {
         Schema::create('suggestions', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('id_user')->unsigned();
-            $table->integer('id_mov')->unsigned();
-            $table->integer('id_state')->unsigned();
-            $table->integer('id_source')->unsigned();
+            $table->integer('user_id')->unsigned();
+            $table->integer('film_id')->unsigned();
+            $table->integer('state_id')->unsigned();
+            $table->integer('source_id')->unsigned();
             $table->timestamps();
         });
     }
