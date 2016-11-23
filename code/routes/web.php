@@ -11,10 +11,14 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Auth::routes();
 
-Route::get('/home', 'HomeController@index');
+// Static pages
+Route::get('/', 'PagesController@home'); // Root route will be either home or feed if connected
+Route::get('/about', 'PagesController@about');
+
+// Users related routes
+Route::get('/user/{id}', 'UsersController@profile');
+Route::get('/user/{id}/stats', 'UsersController@statistics');
+Route::get('/user/{id}/films', 'UsersController@watchedFilms');
+Route::get('/feed', 'UsersController@feed');
