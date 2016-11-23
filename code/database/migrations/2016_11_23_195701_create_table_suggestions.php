@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateNotesTable extends Migration
+class CreateTableSuggestions extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,12 @@ class CreateNotesTable extends Migration
      */
     public function up()
     {
-        Schema::create('notes', function (Blueprint $table) {
+        Schema::create('suggestions', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_id')->unsigned()->index();
-            $table->integer('film_id')->unsigned()->index();
-            $table->text('comment')->nullable();
-            $table->integer('stars')->unsigned();
+            $table->integer('id_user')->unsigned();
+            $table->integer('id_mov')->unsigned();
+            $table->integer('id_state')->unsigned();
+            $table->integer('id_source')->unsigned();
             $table->timestamps();
         });
     }
@@ -30,6 +30,6 @@ class CreateNotesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('notes');
+        Schema::dropIfExists('suggestions');
     }
 }
