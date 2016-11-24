@@ -46,7 +46,7 @@ class UsersController extends Controller
       ->join('films', 'suggestions.film_id', '=', 'films.id')
       ->join('users as user_to', 'suggestions.user_id', '=', 'user_to.id')
       ->where('subscriptions.follower_id', '=', Auth::id())
-      ->select('suggestions.user_id as target_id', 'user_to.name as target_name', 'films.id as film_id', 'films.name as film_name', 'suggestions.source_id','users.name as source_name', 'suggestions.created_at')
+      ->select('suggestions.user_id as target_id', 'user_to.name as target_name', 'films.id as film_id', 'films.name as film_name', 'suggestions.source_id','users.name as source_name', 'suggestions.created_at', 'films.filmTMDB_id')
       ->get();
       //dd($suggestBy[0]['source_id']);
       foreach($suggestBy as $suggest){
@@ -58,10 +58,10 @@ class UsersController extends Controller
       ->join('users', 'notes.user_id', '=', 'users.id')
       ->join('films', 'notes.film_id', '=', 'films.id')
       ->where('subscriptions.follower_id', '=', Auth::id())
-      ->select('users.id as user_id', 'users.name as user_name', 'notes.stars', 'notes.comment', 'films.id as film_id', 'films.name as films_name', 'notes.created_at as created_at')
+      ->select('users.id as user_id', 'users.name as user_name', 'notes.stars', 'notes.comment', 'films.id as film_id', 'films.name as film_name','films.filmTMDB_id', 'notes.created_at as created_at')
       ->get();
       foreach($notesBy as $note){
-        array_push($feed, [$note['created_at']->format('d-m-Y H:i:s'),0,$note]);
+        array_push($feed, [$note['created_at']->format('d-m-Y H:i:s'),1,$note]);
       }
       uasort($feed, array('App\Http\Controllers\UsersController', 'date_compare'));
       return view('users.feed', compact('user', 'feed'));
