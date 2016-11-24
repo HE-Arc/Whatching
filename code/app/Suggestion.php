@@ -15,7 +15,7 @@ class Suggestion extends Model
     }
 
     public function film(){
-      return $this->hasOne(Film::class);
+      return $this->belongsTo(Film::class);
     }
 
     public function source(){
