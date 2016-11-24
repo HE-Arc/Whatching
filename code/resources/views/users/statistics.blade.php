@@ -111,7 +111,6 @@
         </div>
       </div>
       <div class="panel-footer text-right">
-        <a class="btn btn-primary btn-sm"><i class="fa fa-plus"></i>&nbsp;Follow</a>
         <a class="btn btn-primary btn-sm" href="/user/{{$user->id}}"><i class="fa fa-eye"></i>&nbsp;Voir le profil</a>
       </div>
     </div>

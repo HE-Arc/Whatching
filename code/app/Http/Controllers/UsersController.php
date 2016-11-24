@@ -2,13 +2,19 @@
 
 namespace App\Http\Controllers;
 
+
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth; //Pour pouvoir utiliser les méthodes de Auth
+
+use Response;
 
 use App\Http\Requests;
 use App\User;
 use App\Note;
 use App\Film;
+use App\Subscription;
+
 class UsersController extends Controller
 {
 
@@ -20,7 +26,9 @@ class UsersController extends Controller
     *
     */
     public function profile($id){
-      return view('users.profile', compact('id'));
+      $alreadySubscribed = DB::table('subscriptions')->where('follower_id', Auth::user()->id)->where('followed_id', $id)->first();
+      $canSub = ($alreadySubscribed == null ? true : false);
+      return view('users.profile', compact('id', 'canSub'));
     }
 
     /**
@@ -65,5 +73,26 @@ class UsersController extends Controller
     public function search($query){
       return view('users.search', compact('query'));
     }
+
+
+    /**
+    * Subscription routine
+    *
+    */
+    public function subscribeToggle(Request $request){
+      // Add users entry to sbscriptions
+      if(DB::table('subscriptions')->where('follower_id', Auth::user()->id)->where('followed_id', $request->followed_id)->first() == null){
+        DB::table('subscriptions')->insert(
+          ['follower_id' => $request->follower_id, 'followed_id' => $request->followed_id]
+        );
+        return Response::json(['message' => 'Successfully subscribed', 'action' => 'sub']);
+      }else{
+        DB::table('subscriptions')->where('follower_id', $request->follower_id)->where('followed_id', $request->followed_id)->delete();
+        return Response::json(['message' => 'Successfully unsubscribed', 'action' => 'unsub']);
+      }
+
+    }
+
+
 
 }
