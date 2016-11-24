@@ -18,13 +18,13 @@
             <div class="panel panel-default">
               <div class="panel-body">
                 <div class="col-md-2 col-xs-3">
-                  <img src="https://s-media-cache-ak0.pinimg.com/originals/83/89/7e/83897e857be104531da8a2e20e85c5cd.jpg" class="film-cover-{{$line_feed[2]['filmTMDB_id']}} img img-responsive">
+                  <img src="https://s-media-cache-ak0.pinimg.com/originals/83/89/7e/83897e857be104531da8a2e20e85c5cd.jpg" class="film-cover-{{$line_feed[2]->film->filmTMDB_id}} img img-responsive">
                 </div>
                 <div class="col-md-10 col-xs-9 vcenter">
                   <p class="user-card-name">
-                    <a href="/user/{{$line_feed[2]['source_id']}}">{{$line_feed[2]['source_name']}}</a>
-                    suggested <a href="/film/{{$line_feed[2]['filmTMDB_id']}}">{{$line_feed[2]['film_name']}}</a>
-                    to <a href="/user/{{$line_feed[2]['target_id']}}">{{$line_feed[2]['target_name']}}</a>.
+                    <a href="/user/{{$line_feed[2]->source->id}}">{{$line_feed[2]->source->name}}</a>
+                    suggested <a href="/film/{{$line_feed[2]->film->filmTMDB_id}}">{{$line_feed[2]->film->name}}</a>
+                    to <a href="/user/{{$line_feed[2]->user->id}}">{{$line_feed[2]->user->name}}</a>.
                   </p>
                   <p style="margin-top:50px;">
                   <img src="/user-placeholder.png" class="img img-circle" width="40" /> <i class="fa fa-arrow-right"></i> <img src="/user-placeholder.png" class="img img-circle" width="40" />
@@ -37,7 +37,7 @@
                     <em>{{$line_feed[0]}}</em>
                   </div>
                   <div class="col-md-6 text-right">
-                    <a class="btn btn-primary btn-sm" href="/film/{{$line_feed[2]['filmTMDB_id']}}"><i class="fa fa-eye"></i>&nbsp;Go to the movie page</a>
+                    <a class="btn btn-primary btn-sm" href="/film/{{$line_feed[2]->film->filmTMDB_id}}"><i class="fa fa-eye"></i>&nbsp;Go to the movie page</a>
                   </div>
                 </div>
               </div>
@@ -48,21 +48,21 @@
             <div class="panel panel-default">
               <div class="panel-body">
                 <div class="col-md-2 col-xs-3">
-                  <img src="https://s-media-cache-ak0.pinimg.com/originals/83/89/7e/83897e857be104531da8a2e20e85c5cd.jpg" class="film-cover-{{$line_feed[2]['filmTMDB_id']}} img img-responsive">
+                  <img src="https://s-media-cache-ak0.pinimg.com/originals/83/89/7e/83897e857be104531da8a2e20e85c5cd.jpg" class="film-cover-{{$line_feed[2]->film->filmTMDB_id}} img img-responsive">
                 </div>
                 <div class="col-md-10 col-xs-9 vcenter">
                   <p class="user-card-name">
-                    <a href="/film/{{$line_feed[2]['filmTMDB_id']}}">{{$line_feed[2]['film_name']}}</a>
+                    <a href="/film/{{$line_feed[2]->film->filmTMDB_id}}">{{$line_feed[2]->film->name}}</a>
                   </p>
                   <div class="row" style="margin-top:45px;">
                     <div class="col-md-6">
                       <img src="/user-placeholder.png" class="img img-circle" width="40" />
-                      <a href="/user/{{$line_feed[2]['user_id']}}">{{$line_feed[2]['user_name']}}</a>
+                      <a href="/user/{{$line_feed[2]->user->name}}">{{$line_feed[2]->user->name}}</a>
                     </div>
                     <div class="col-md-6">
                       <div class="star-note text-right">
                         @for ($i=1; $i < 11; $i++)
-                          @if ($i <= $line_feed[2]['stars'])
+                          @if ($i <= $line_feed[2]->stars)
                             <i class="fa fa-star"></i>
                           @else
                             <i class="fa fa-star" style="color: grey;"></i>
@@ -75,14 +75,14 @@
               </div>
               <div class="panel-footer">
                 <blockquote style="margin-bottom:0px;">
-                  {{$line_feed[2]['comment']}}
+                  {{$line_feed[2]->comment}}
                 </blockquote>
                 <div class="row">
                   <div class="col-md-6">
                     <em>{{$line_feed[0]}}</em>
                   </div>
                   <div class="col-md-6 text-right">
-                    <a class="btn btn-primary btn-sm" href="/film/{{$line_feed[2]['filmTMDB_id']}}"><i class="fa fa-eye"></i>&nbsp;Go to the movie page</a>
+                    <a class="btn btn-primary btn-sm" href="/film/{{$line_feed[2]->film->filmTMDB_id}}"><i class="fa fa-eye"></i>&nbsp;Go to the movie page</a>
                   </div>
                 </div>
 
@@ -91,7 +91,7 @@
           </div>
         @endif
         <script>
-          getMovieFromTMDb({{$line_feed[2]['filmTMDB_id']}}, ".film-cover-{{$line_feed[2]['filmTMDB_id']}}");
+          getMovieFromTMDb({{$line_feed[2]->film->filmTMDB_id}}, ".film-cover-{{$line_feed[2]->film->filmTMDB_id}}");
         </script>
         @empty
         <p>Follow some people dude ! </p>
