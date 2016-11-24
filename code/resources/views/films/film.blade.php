@@ -83,7 +83,7 @@
 </div>
 
 <script>
-getMovieFromTMDb({{$id}}, '#film-name', '#film-cover', '#film-synopsis');
+getMovieFromTMDb({{$id}}, '#film-cover', '#film-name', '#film-synopsis');
 </script>
 
 </div>
