@@ -35,15 +35,17 @@
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title" id="myModalLabel">Suggest a movie to a friend</h4>
+            <h4 class="modal-title" id="myModalLabel">Suggest this movie to friends</h4>
           </div>
           <div class="modal-body">
 
             <form id="suggestForm">
               @forelse ($user->followedUsers as $uf)
               <div class="panel panel-default">
-                <div class="panel-body">
+                <div class="panel-body" onclick="selectRow(this)" id="row-select-user-{{$uf->id}}">
+                  <div id="checkbox-select">
                   <input type="checkbox" name="suggestList" value="{{$uf->id}}">{{$uf->name}}<br>
+                </div>
                 </div>
               </div>
               @empty
@@ -151,7 +153,7 @@
         },
         dataType: 'json',
         success: function (data) {
-          alert("Suggestions successfully added!");
+          $('#suggestModal').modal('toggle');
         },
         error: function (data) {
           console.log('Error:', data);
@@ -159,15 +161,17 @@
       });
     }
   });
+
   </script>
 
   <script>
-
+    // Change panel color ad toggle the inner checkbox
     function selectRow(elem){
-      // Some pretty coloration
-      alert("ok");
+      $("#"+elem.id).toggleClass("selected-row");
+      var $tc = $("#"+elem.id).children().find('input:checkbox:first'),
+            tv = $tc.attr('checked');
+        $tc.attr('checked', !tv);
     }
-
   </script>
 
   <script>

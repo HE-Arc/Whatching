@@ -2,11 +2,20 @@
   margin-bottom: 8pt;
   margin-top: 8pt;
 }
+/*Selected user for suggestion row */
+.selected-row{
+  background-color: rgba(52, 152, 219,.8);
+  color: white;
+}
 
 /* For a user card */
 .user-card-name{
   font-size: 16pt;
   margin-bottom: 1pt;
+}
+
+#checkbox-select input[type='checkbox']{
+  display: none;
 }
 
 .user-card-bio{
