@@ -15,14 +15,18 @@
     <link rel="stylesheet" href="/css/font-awesome.min.css">
     <link rel="stylesheet" href="/css/custom.css">
 
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
     <!-- Scripts -->
     <script>
         window.Laravel = <?php echo json_encode([
             'csrfToken' => csrf_token(),
         ]); ?>
     </script>
-    <!-- jQuery -->
-    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+
+    <!-- Scripts -->
+    <script src="/js/app.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
     <!-- App specific script -->
     <script src="/js/config.js"></script>
@@ -84,13 +88,17 @@
                             <li><a href="/suggest"><i class="fa fa-film" aria-hidden="true"></i>&nbsp;Suggest me !</a></li>
                         @endif
                     </ul>
+                    <form class="navbar-form navbar-right">
+                      <div class="form-group input-group ui-widget">
+                        <span class="input-group-addon" id="basic-addon"><span class="fa fa-search"></span> </span>
+                        <input type="text" id="search-bar" name="search" class="form-control" placeholder="Search..." aria-describedby="basic-addon" />
+                      </div>
+                    </form>
                 </div>
             </div>
         </nav>
         @yield('content')
     </div>
 
-    <!-- Scripts -->
-    <script src="/js/app.js"></script>
 </body>
 </html>

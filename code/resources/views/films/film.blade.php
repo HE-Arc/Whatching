@@ -147,7 +147,7 @@
         url: "/film/suggestToFriend",
         data: {
           user_ids: suggestionsIds,
-          film_id: {{$film->id}},
+          film_id: {{$id}},
           state_id: 1,
           source_id: {{Auth::user()->id}}
         },

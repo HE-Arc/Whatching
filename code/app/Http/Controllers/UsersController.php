@@ -99,7 +99,13 @@ class UsersController extends Controller
     *
     */
     public function search($query){
-      return view('users.search', compact('query'));
+      //return view('users.search', compact('query'));
+      $users = User::where('name', 'like', $query.'%')->get();
+      $autocompletableList = array();
+      foreach($users as $usr){
+        array_push($autocompletableList, ["id" => $usr->id, "label" => "@".$usr->name]);
+      }
+      return $autocompletableList;
     }
 
 
