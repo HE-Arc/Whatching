@@ -3,12 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth; //Pour pouvoir utiliser les méthodes de Auth
 
 use App\Http\Requests;
+use App\User;
 
 class UsersController extends Controller
 {
 
+    public function __construct(){
+      $this->middleware('auth');
+    }
     /**
     * Show overview infos of a user's profile
     *
@@ -22,7 +27,8 @@ class UsersController extends Controller
     *
     */
     public function feed(){
-      return view('users.feed');
+      $user = Auth::user();
+      return view('users.feed', compact('user'));
     }
 
     /**
@@ -30,7 +36,9 @@ class UsersController extends Controller
     *
     */
     public function statistics($id){
-      return view('users.statistics', compact('id'));
+      $user = User::find($id);
+      if($user == null) $user = Auth::user();
+      return view('users.statistics', compact('user'));
     }
 
     /**
