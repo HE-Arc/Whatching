@@ -40,7 +40,7 @@
           <div class="modal-body">
 
             <form id="suggestForm">
-              @forelse ($user->usersFollowed as $uf)
+              @forelse ($user->followedUsers as $uf)
               <div class="panel panel-default">
                 <div class="panel-body">
                   <input type="checkbox" name="suggestList" value="{{$uf->id}}">{{$uf->name}}<br>
