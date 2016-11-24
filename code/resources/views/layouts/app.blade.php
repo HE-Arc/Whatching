@@ -21,6 +21,13 @@
             'csrfToken' => csrf_token(),
         ]); ?>
     </script>
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+
+    <!-- App specific script -->
+    <script src="/js/config.js"></script>
+    <script src="/js/whatching.js"></script>
+
 </head>
 <body>
     <div id="app">

@@ -21,4 +21,8 @@ class SubscriptionsTableSeeder extends Seeder
           'followed_id' => '1'
         ]);
     }
+
+    
+
+
 }
