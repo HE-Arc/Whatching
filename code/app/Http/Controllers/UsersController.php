@@ -13,7 +13,7 @@ use App\Http\Requests;
 use App\User;
 use App\Note;
 use App\Film;
-use App\Subscription;
+use App\Suggestion;
 
 class UsersController extends Controller
 {
@@ -37,7 +37,42 @@ class UsersController extends Controller
     */
     public function feed(){
       $user = Auth::user();
-      return view('users.feed', compact('user'));
+      $feed = array();
+      // BIG POO ('cause we are polite') INCOMING
+
+      // Get suggestion given by followed people
+      $suggestBy = Suggestion::join('subscriptions', 'suggestions.source_id', '=', 'subscriptions.followed_id')
+      ->join('users', 'suggestions.source_id', '=', 'users.id')
+      ->join('films', 'suggestions.film_id', '=', 'films.id')
+      ->join('users as user_to', 'suggestions.user_id', '=', 'user_to.id')
+      ->where('subscriptions.follower_id', '=', Auth::id())
+      ->select('suggestions.user_id as target_id', 'user_to.name as target_name', 'films.id as film_id', 'films.name as film_name', 'suggestions.source_id','users.name as source_name', 'suggestions.created_at', 'films.filmTMDB_id')
+      ->get();
+      //dd($suggestBy[0]['source_id']);
+      foreach($suggestBy as $suggest){
+        array_push($feed, [$suggest['created_at']->format('d-m-Y H:i:s') ,0,$suggest]);
+      }
+
+      //Notes données par des gens qu'on follow
+      $notesBy = Note::join('subscriptions', 'notes.user_id', '=', 'subscriptions.followed_id')
+      ->join('users', 'notes.user_id', '=', 'users.id')
+      ->join('films', 'notes.film_id', '=', 'films.id')
+      ->where('subscriptions.follower_id', '=', Auth::id())
+      ->select('users.id as user_id', 'users.name as user_name', 'notes.stars', 'notes.comment', 'films.id as film_id', 'films.name as film_name','films.filmTMDB_id', 'notes.created_at as created_at')
+      ->get();
+      foreach($notesBy as $note){
+        array_push($feed, [$note['created_at']->format('d-m-Y H:i:s'),1,$note]);
+      }
+      uasort($feed, array('App\Http\Controllers\UsersController', 'date_compare'));
+      return view('users.feed', compact('user', 'feed'));
+    }
+
+    public function date_compare($a, $b)
+    {
+        if(strtotime($a[0]) == strtotime($b[0])){
+          return 0;
+        }
+        return (strtotime($a[0]) < strtotime($b[0])) ? 1 : -1;
     }
 
     /**
@@ -57,6 +92,7 @@ class UsersController extends Controller
     public function watchedFilms($id){
       $user = User::find($id);
       if($user == null) $user = Auth::user();
+      // A mettre dans un model peut-être.
       $films = $user->films;
       $filmsNotes = array();
       foreach($films as $film){

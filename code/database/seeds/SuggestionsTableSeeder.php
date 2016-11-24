@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Carbon\Carbon;
 
 class SuggestionsTableSeeder extends Seeder
 {
@@ -15,7 +16,8 @@ class SuggestionsTableSeeder extends Seeder
         'user_id' => '2',
         'film_id' => '3',
         'state_id' => '1',
-        'source_id' => '1'
+        'source_id' => '1',
+        'created_at' => Carbon::now()->format('Y-m-d H:i:s')
       ]);
 
     }

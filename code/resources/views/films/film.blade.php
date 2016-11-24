@@ -161,5 +161,10 @@
   </script>
 
 
+<script>
+getMovieFromTMDb({{$id}}, '#film-cover', '#film-name', '#film-synopsis');
+</script>
+
+
 </div>
 @endsection
