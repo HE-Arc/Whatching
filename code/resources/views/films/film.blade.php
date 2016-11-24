@@ -74,7 +74,7 @@
 </div>
 
 <script>
-getMovieFromTMDb({{$id}});
+getMovieFromTMDb({{$id}}, '#film-name', '#film-cover', '#film-synopsis');
 </script>
 
 </div>
