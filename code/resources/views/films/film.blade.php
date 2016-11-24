@@ -165,7 +165,7 @@
 
     function selectRow(elem){
       // Some pretty coloration
-      alert($(elem).parent());
+      alert("ok");
     }
 
   </script>
