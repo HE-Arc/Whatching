@@ -37,8 +37,7 @@ $(function(){
         select: function(e, ui){
           //Searching for an user
           if($('#search-bar').val().indexOf('@') == 0){
-            var usrname = ui.item.label.substring(1);
-            window.location.href = '/user/'+usrname;
+            window.location.href = '/user/'+ui.item.id;
           } else {
             //TMDb
             window.location.href = '/film/'+ui.item.id;
