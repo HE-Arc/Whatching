@@ -73,7 +73,9 @@
 
 </div>
 
-
+<script>
+getMovieFromTMDb({{$id}});
+</script>
 
 </div>
 @endsection
