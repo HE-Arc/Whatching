@@ -11,7 +11,6 @@
         Here you can create an account, login or be redirected on your personal feed.
       </p>
 
-
       <h2>Some accessible links</h2>
       <ul>
           <li><a href="{{url('/about')}}">About page</a></li>
