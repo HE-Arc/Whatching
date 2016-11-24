@@ -40,9 +40,15 @@
           <div class="modal-body">
 
             <form id="suggestForm">
-              @foreach ($user->usersFollowed as $uf)
-              <input type="checkbox" name="suggestList" value="{{$uf->id}}">{{$uf->name}}<br>
-              @endforeach
+              @forelse ($user->usersFollowed as $uf)
+              <div class="panel panel-default">
+                <div class="panel-body">
+                  <input type="checkbox" name="suggestList" value="{{$uf->id}}">{{$uf->name}}<br>
+                </div>
+              </div>
+              @empty
+              <b>No one to suggest yet.</b>
+              @endforelse
             </form>
           </div>
           <div class="modal-footer">
@@ -151,20 +157,22 @@
           console.log('Error:', data);
         }
       });
-
-
     }
-
-
-
   });
   </script>
 
+  <script>
 
-<script>
-getMovieFromTMDb({{$id}}, '#film-cover', '#film-name', '#film-synopsis');
-</script>
+    function selectRow(elem){
+      // Some pretty coloration
+      alert($(elem).parent());
+    }
 
+  </script>
+
+  <script>
+  getMovieFromTMDb({{$id}}, '#film-cover', '#film-name', '#film-synopsis');
+  </script>
 
 </div>
 @endsection
