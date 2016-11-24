@@ -7,7 +7,8 @@ use Illuminate\Support\Facades\Auth; //Pour pouvoir utiliser les méthodes de Au
 
 use App\Http\Requests;
 use App\User;
-
+use App\Note;
+use App\Film;
 class UsersController extends Controller
 {
 
@@ -46,7 +47,15 @@ class UsersController extends Controller
     *
     */
     public function watchedFilms($id){
-      return view('users.watchedFilms', compact('id'));
+      $user = User::find($id);
+      if($user == null) $user = Auth::user();
+      $films = $user->films;
+      $filmsNotes = array();
+      foreach($films as $film){
+        $n = Note::where('user_id', $user->id)->where('film_id', $film->id)->first();
+        array_push($filmsNotes, [$film, $n]);
+      }
+      return view('users.watchedFilms', compact('user', 'filmsNotes'));
     }
 
     /**
