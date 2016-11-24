@@ -6,6 +6,10 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 
+use App\Film;
+
+use App\User;
+
 class FilmsController extends Controller
 {
 
@@ -14,7 +18,8 @@ class FilmsController extends Controller
   *
   */
   public function film($id){
-    return view('films.film', compact('id'));
+    $film = Film::where('filmTMDB_id', $id)->first();
+    return view('films.film', compact('id', 'film'));
   }
 
 
@@ -32,6 +37,21 @@ class FilmsController extends Controller
   */
   public function suggestFilm(){
     return view('films.suggestFilm');
+  }
+
+  public function addToDB(Request $req){
+    if($req->isMethod('post')){
+      $tmdbId = $req->input('tmdbId');
+      $name = $req->input('name');
+      $res = Film::where('filmTMDB_id', $tmdbId)->count();
+      if($res == 0){
+        Film::insert([
+          "filmTMDB_id" => $tmdbId,
+          "name" => $name
+        ]);
+      }
+    }
+
   }
 
 }

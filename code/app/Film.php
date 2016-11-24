@@ -11,7 +11,7 @@ class Film extends Model
     }
 
     public function notes(){
-      return $this->belongsToMany(Note::class);
+      return $this->hasMany(Note::class);
     }
 
     public function suggestions(){

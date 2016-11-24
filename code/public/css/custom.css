@@ -3,6 +3,40 @@
   margin-top: 8pt;
 }
 
+/* For a user card */
+.user-card-name{
+  font-size: 16pt;
+  margin-bottom: 1pt;
+}
+
+.user-card-bio{
+font-size: 12pt;
+color: #AAA;
+}
+
+/* For a movie card */
+.movie-card-name{
+margin-top: 15pt;
+font-size: 14pt;
+}
+
+/* User stat row */
+.stat-row h1{
+
+  font-size: 48pt;
+  letter-spacing: -2px
+
+}
+
+.stat-row h2{
+  font-size: 15pt;
+}
+
+.vcenter {
+    display: inline-block;
+    vertical-align: middle;
+    float: none;
+}
 
 /* Star notes */
 .star-note{
