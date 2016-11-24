@@ -32,49 +32,58 @@
   <h1>User's Reviews</h1>
 
   <section class="comment-list" id="film-reviews">
+    @if ($film != null)
 
-            @for($i=0; $i<=10; $i++)
+            @forelse ($film->notes as $note)
             <!-- First Comment -->
             <article class="row">
               <div class="col-md-2 col-sm-2 hidden-xs">
                 <figure class="thumbnail">
                   <img class="img-responsive" src="http://www.keita-gaming.com/assets/profile/default-avatar-c5d8ec086224cb6fc4e395f4ba3018c2.jpg" />
-                  <figcaption class="text-center">username</figcaption>
+                  <figcaption class="text-center">{{$note->user->name}}</figcaption>
                 </figure>
               </div>
               <div class="col-md-10 col-sm-10">
                 <div class="panel panel-default arrow left">
                   <div class="panel-body">
                     <header class="text-left">
-                      <div class="comment-user"><i class="fa fa-user"></i> That Guy</div>
+                      <div class="comment-user"><i class="fa fa-user"></i> {{$note->user->name}}</div>
                       <time class="comment-date" datetime="16-12-2014 01:05"><i class="fa fa-clock-o"></i> Dec 16, 2014</time>
                     </header>
                     <div class="comment-post">
                       <p>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                        {{ $note->comment }}
                       </p>
                     </div>
 
-                      <div class="star-note text-right">
-                        @for($j = 0; $j <5; $j++)
-                            <i class="fa fa-star"></i>
-                        @endfor
-                      </div>
+                    <div class="star-note text-right">
+                      @for ($i=1; $i < 11; $i++)
+                        @if ($i <= $note->stars)
+                          <i class="fa fa-star"></i>
+                        @else
+                          <i class="fa fa-star" style="color: grey;"></i>
+                        @endif
+                      @endfor
+                    </div>
 
                   </div>
                 </div>
               </div>
               </article>
-              @endfor
+              @empty
+              <b> Not reviewed yet </b>
+              @endforelse
 
-
+@else
+<b> Not reviewed yet </b>
+@endif
 
           </section>
 
 </div>
 
 <script>
-getMovieFromTMDb({{$id}});
+getMovieFromTMDb({{$id}}, '#film-name', '#film-cover', '#film-synopsis');
 </script>
 
 </div>
