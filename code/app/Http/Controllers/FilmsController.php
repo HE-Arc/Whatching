@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use Illuminate\Support\Facades\Auth;
+
 use App\Http\Requests;
-
+use Response;
 use App\Film;
-
+use App\Suggestion;
 use App\User;
 
 class FilmsController extends Controller
@@ -18,8 +20,12 @@ class FilmsController extends Controller
   *
   */
   public function film($id){
+
+    // TODO: Some users just to test, need to be correctly filtered !!
+    $user = Auth::user();
+
     $film = Film::where('filmTMDB_id', $id)->first();
-    return view('films.film', compact('id', 'film'));
+    return view('films.film', compact('id', 'film', 'user'));
   }
 
 
@@ -53,5 +59,27 @@ class FilmsController extends Controller
     }
 
   }
+
+
+
+/**
+* Suggest a movie to a (real) friend
+*
+*/
+public function suggestToFriend(Request $request){
+
+  // Insert all suggestions
+  foreach($request->user_ids as $targetID){
+    Suggestion::insert([
+      "user_id" => $targetID,
+      "film_id" => $request->film_id,
+      "state_id" => $request->state_id,
+      "source_id" => $request->source_id
+    ]);
+  }
+
+  return Response::json(['message' => 'Successfully added suggestion(s)', 'action' => 'addSugg']);
+}
+
 
 }

@@ -6,7 +6,6 @@
 @section('content')
 <div class="container">
 
-
   <div class="row">
     <div class="col-md-2 col-sm-2">
       <img src="/user-placeholder.png" class="img img-responsive img-circle" />
