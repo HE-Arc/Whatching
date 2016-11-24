@@ -43,11 +43,11 @@ class User extends Authenticatable
       return $this->hasMany(Suggestion::class);
     }
 
-    public function usersFollowed(){
+    public function followedUsers(){
       return $this->belongsToMany(User::Class, 'subscriptions', 'follower_id', 'followed_id');
     }
 
-    public function usersFollowing(){
+    public function followingUsers(){
       return $this->belongsToMany(User::class, 'subscriptions', 'follower_id', 'follower_id');
     }
 

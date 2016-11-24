@@ -29,11 +29,11 @@
       <h2>reviews</h2>
     </div>
     <div class="col-md-3 col-sm-3 col-xs-6">
-      <h1>{{$user->usersFollowed->count()}}</h1>
+      <h1>{{$user->followedUsers->count()}}</h1>
       <h2>followers</h2>
     </div>
     <div class="col-md-3 col-sm-3 col-xs-6">
-      <h1>{{$user->usersFollowing->count()}}</h1>
+      <h1>{{$user->followingUsers->count()}}</h1>
       <h2>following</h2>
     </div>
   </div>
@@ -42,7 +42,7 @@
   <h2>Films watched</h2>
 
   <div class="row">
-    @foreach ($user->films as $film)
+    @forelse ($user->films as $film)
     <div class="col-md-3 col-sm-4 col-xs-12 watched-movie-case">
       <div class="panel panel-default">
         <div class="panel-body">
@@ -60,7 +60,9 @@
           </div></div>
         </div>
       </div>
-      @endforeach
+    @empty
+      No movies.
+    @endforelse
     </div>
 
     <div class="row">
@@ -93,7 +95,7 @@
 <h2>People followed</h2>
 
 <div class="row">
-  @foreach ($user->usersFollowed as $user)
+  @forelse ($user->followedUsers as $user)
   <div class="col-md-6 col-xs-12">
     <div class="panel panel-default">
       <div class="panel-body">
@@ -114,7 +116,8 @@
       </div>
     </div>
   </div>
-  @endforeach
+  @empty
+  @endforelse
 </div>
 
 
@@ -122,7 +125,7 @@
 <h2>People following</h2>
 
 <div class="row">
-  @foreach ($user->usersFollowing as $user)
+  @foreach ($user->followingUsers as $user)
   <div class="col-md-6 col-xs-12">
     <div class="panel panel-default">
       <div class="panel-body">
