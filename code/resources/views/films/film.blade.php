@@ -8,11 +8,11 @@
 
 <div class="row">
   <div class="col-md-3">
-      <img src="https://s-media-cache-ak0.pinimg.com/originals/83/89/7e/83897e857be104531da8a2e20e85c5cd.jpg" class="img img-responsive">
+      <img id="film-cover" src="https://s-media-cache-ak0.pinimg.com/originals/83/89/7e/83897e857be104531da8a2e20e85c5cd.jpg" class="img img-responsive">
   </div>
 
   <div class="col-md-9 movie-title-case">
-      <h1>Fight Club</h1>
+      <h1 id="film-name">Fight Club</h1>
 
       <div class="btn-group" role="group" aria-label="Basic example">
         <button type="button" class="btn btn-primary"><i class="fa fa-thumbs-up" aria-hidden="true"></i>&nbsp;Suggest it</button>
@@ -20,7 +20,7 @@
         <button type="button" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i>&nbsp;Add to watchlist</button>
       </div>
 
-      <p>
+      <p id="film-synopsis">
         Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
       </p>
   </div>
@@ -31,7 +31,7 @@
 
   <h1>User's Reviews</h1>
 
-  <section class="comment-list">
+  <section class="comment-list" id="film-reviews">
 
             @for($i=0; $i<=10; $i++)
             <!-- First Comment -->
