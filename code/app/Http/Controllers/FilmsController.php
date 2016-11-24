@@ -8,6 +8,8 @@ use App\Http\Requests;
 
 use App\Film;
 
+use App\User;
+
 class FilmsController extends Controller
 {
 
@@ -16,7 +18,8 @@ class FilmsController extends Controller
   *
   */
   public function film($id){
-    return view('films.film', compact('id'));
+    $film = Film::where('filmTMDB_id', $id)->first();
+    return view('films.film', compact('id', 'film'));
   }
 
 
