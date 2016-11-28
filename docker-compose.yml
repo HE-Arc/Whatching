@@ -2,7 +2,7 @@ version: '2'
 
 services:
   frontend:
-    image: nginx:1.10-alpine
+    image: nginx:1.11-alpine
     volumes:
       - "./code:/var/www/laravel:ro"
       - "./configs/nginx:/etc/nginx/conf.d:ro"
