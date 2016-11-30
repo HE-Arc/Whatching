@@ -11,6 +11,7 @@ use Response;
 use App\Film;
 use App\Suggestion;
 use App\User;
+use App\Collection;
 
 class FilmsController extends Controller
 {
@@ -25,7 +26,8 @@ class FilmsController extends Controller
     $user = Auth::user();
 
     $film = Film::where('id', $id)->first();
-    return view('films.film', compact('id', 'film', 'user'));
+    $isWatched = count(Collection::where('user_id', $user->id)->where('film_id', $id)->get()->first()) == 1 ? true : false;
+    return view('films.film', compact('id', 'film', 'user', 'isWatched'));
   }
 
 
@@ -84,6 +86,20 @@ public function suggestToFriend(Request $request){
   }
 
   return Response::json(['message' => 'Successfully added suggestion(s)', 'action' => 'addSugg']);
+}
+
+public function watched($id){
+    $actUser = Auth::user();
+    $existent = Collection::where('user_id', $actUser->id)->where('film_id', $id)->get()->first();
+    if(count($existent) == 0){
+        Collection::create([
+            'user_id' => $actUser->id,
+            'film_id' => $id
+        ]);
+    } else {
+        $existent->delete();
+    }
+
 }
 
 

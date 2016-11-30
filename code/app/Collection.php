@@ -13,4 +13,6 @@ class Collection extends Model
     public function film(){
       return $this->hasOne(Film::class);
     }
+
+    protected $fillable = ['user_id', 'film_id'];
 }

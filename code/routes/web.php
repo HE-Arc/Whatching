@@ -31,6 +31,6 @@ Route::get('/feed', 'UsersController@feed');
 Route::get('/film/{id}', 'FilmsController@film');
 Route::get('/film/search/{query}', 'FilmsController@search');
 Route::get('/suggest', 'FilmsController@suggestFilm');
+Route::get('/watched/{id}', 'FilmsController@watched');
 Route::post('/film/suggestToFriend', 'FilmsController@suggestToFriend');
-
 Route::post('/addToDB', 'FilmsController@addToDB');
