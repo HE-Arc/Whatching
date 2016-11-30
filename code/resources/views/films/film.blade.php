@@ -16,11 +16,7 @@
 
       <div class="btn-group" role="group" aria-label="Basic example">
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#suggestModal"><i class="fa fa-thumbs-up" aria-hidden="true"></i>&nbsp;Suggest it</button>
-        @if ($isWatched)
-        <button type="button" id="btnWatched" class="btn btn-primary btn-success" onclick="setWatched({{$id}})"><i class="fa fa-eye" aria-hidden="true"></i>&nbsp;Watched</button>
-        @else
         <button type="button" id="btnWatched" class="btn btn-primary" onclick="setWatched({{$id}})"><i class="fa fa-eye" aria-hidden="true"></i>&nbsp;Watched</button>
-        @endif
         <button type="button" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i>&nbsp;Add to watchlist</button>
       </div>
 
@@ -74,7 +70,7 @@
 
     <section class="comment-list" id="film-reviews">
       @if ($film != null)
-
+      <button id="btnReview" class="btn btn-primary hidden"><i class="fa fa-pencil"></i> Write a review</button><br />
       @forelse ($film->notes as $note)
       <!-- First Comment -->
       <article class="row">
@@ -172,6 +168,13 @@
         $tc.attr('checked', !tv);
     }
   </script>
+
+  @if ($isWatched)
+  <script>
+    $("#btnWatched").toggleClass("btn-success");
+    $("#btnReview").toggleClass("hidden");
+  </script>
+  @endif
 
 </div>
 @endsection

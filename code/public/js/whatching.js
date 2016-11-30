@@ -11,27 +11,18 @@ $(function(){
             var usr = req.term.substring(1);
             if(usr != ""){
               $.ajax("/user/search/"+usr, {
-                async: false,
                 success: function(data, status, xhr){
-                    result = data;
+                    res(data);
                 }
               });
             }
-
-            console.log(result);
-            res(result);
           } else {
             var result;
               $.ajax("/film/search/"+req.term, {
-                async: false,
                 success: function(data, status, xhr){
-                    console.log(data);
-                    result = data;
+                    res(data);
                 }
               });
-
-            console.log(result);
-            res(result);
           }
         },
         select: function(e, ui){
@@ -53,6 +44,7 @@ function setWatched(id) {
     $.ajax('/watched/'+id, {
         success: function(data, status, xhr){
             $("#btnWatched").toggleClass("btn-success");
+            $("#btnReview").toggleClass("hidden");
         }
     });
 }
