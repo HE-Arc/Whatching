@@ -21,16 +21,16 @@ $(function(){
             console.log(result);
             res(result);
           } else {
-            var result = [];
-            delete $.ajaxSettings.headers["X-CSRF-TOKEN"];
-            $.ajax("https://api.themoviedb.org/3/search/movie?api_key="+API_KEY+"&language=en-US&query="+req.term, {
-              async: false,
-              success: function(data, status, xhr){
-                data.results.forEach(function(el){
-                  result.push({id: el.id, label: el.title});
-                });
-              }
-            });
+            var result;
+              $.ajax("/film/search/"+req.term, {
+                async: false,
+                success: function(data, status, xhr){
+                    console.log(data);
+                    result = data;
+                }
+              });
+
+            console.log(result);
             res(result);
           }
         },

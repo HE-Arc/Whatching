@@ -34,7 +34,13 @@ class FilmsController extends Controller
   *
   */
   public function search($query){
-    return view('films.search', compact('query'));
+    //return view('users.search', compact('query'));
+    $films = Film::where('name', 'like', $query.'%')->get();
+    $autocompletableList = array();
+    foreach($films as $flm){
+      array_push($autocompletableList, ["id" => $flm->id, "label" => $flm->name]);
+    }
+    return $autocompletableList;
   }
 
   /**
@@ -59,7 +65,6 @@ class FilmsController extends Controller
     }
 
   }
-
 
 
 /**
