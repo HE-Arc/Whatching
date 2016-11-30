@@ -24,7 +24,7 @@ class FilmsController extends Controller
     // TODO: Some users just to test, need to be correctly filtered !!
     $user = Auth::user();
 
-    $film = Film::where('filmTMDB_id', $id)->first();
+    $film = Film::where('id', $id)->first();
     return view('films.film', compact('id', 'film', 'user'));
   }
 
@@ -75,7 +75,7 @@ public function suggestToFriend(Request $request){
 
   // Insert all suggestions
   foreach($request->user_ids as $targetID){
-    Suggestion::insert([
+    Suggestion::create([
       "user_id" => $targetID,
       "film_id" => $request->film_id,
       "state_id" => $request->state_id,

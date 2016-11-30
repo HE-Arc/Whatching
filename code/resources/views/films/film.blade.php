@@ -8,11 +8,11 @@
 
   <div class="row">
     <div class="col-md-3">
-      <img id="film-cover" src="https://s-media-cache-ak0.pinimg.com/originals/83/89/7e/83897e857be104531da8a2e20e85c5cd.jpg" class="img img-responsive">
+      <img id="film-cover" src="http://image.tmdb.org/t/p/w780{{$film->poster_path}}" class="img img-responsive">
     </div>
 
     <div class="col-md-9 movie-title-case">
-      <h1 id="film-name">Fight Club</h1>
+      <h1 id="film-name">{{ $film->name }}</h1>
 
       <div class="btn-group" role="group" aria-label="Basic example">
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#suggestModal"><i class="fa fa-thumbs-up" aria-hidden="true"></i>&nbsp;Suggest it</button>
@@ -21,7 +21,7 @@
       </div>
 
       <p id="film-synopsis">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        {{ $film->synopsis }}
       </p>
     </div>
 
@@ -118,11 +118,6 @@
     </section>
 
   </div>
-
-  <script>
-  getMovieFromTMDb({{$id}}, '#film-name', '#film-cover', '#film-synopsis');
-  </script>
-
   <script>
   $("#submitSuggest").click(function (e) {
 
@@ -172,10 +167,6 @@
             tv = $tc.attr('checked');
         $tc.attr('checked', !tv);
     }
-  </script>
-
-  <script>
-  getMovieFromTMDb({{$id}}, '#film-cover', '#film-name', '#film-synopsis');
   </script>
 
 </div>

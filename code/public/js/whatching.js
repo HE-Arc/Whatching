@@ -39,7 +39,6 @@ $(function(){
           if($('#search-bar').val().indexOf('@') == 0){
             window.location.href = '/user/'+ui.item.id;
           } else {
-            //TMDb
             window.location.href = '/film/'+ui.item.id;
           }
 
