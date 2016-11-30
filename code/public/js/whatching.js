@@ -31,7 +31,7 @@ $(function(){
             window.location.href = '/user/'+ui.item.id;
           } else {
             window.location.href = '/film/'+ui.item.id;
-          }ve
+          }
 
         }
       });

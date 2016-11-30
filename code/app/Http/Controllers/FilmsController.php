@@ -24,9 +24,8 @@ class FilmsController extends Controller
 
     // TODO: Some users just to test, need to be correctly filtered !!
     $user = Auth::user();
-
-    $film = Film::where('id', $id)->first();
-    $isWatched = count(Collection::where('user_id', $user->id)->where('film_id', $id)->get()->first()) == 1 ? true : false;
+    $film = Film::find($id);
+    $isWatched = $user->films()->where('film_id', $id)->exists();
     return view('films.film', compact('id', 'film', 'user', 'isWatched'));
   }
 
@@ -36,13 +35,8 @@ class FilmsController extends Controller
   *
   */
   public function search($query){
-    //return view('users.search', compact('query'));
-    $films = Film::where('name', 'like', $query.'%')->get();
-    $autocompletableList = array();
-    foreach($films as $flm){
-      array_push($autocompletableList, ["id" => $flm->id, "label" => $flm->name]);
-    }
-    return $autocompletableList;
+    $films = Film::select('id', 'name as label')->where('name', 'like', $query.'%')->get();
+    return $films;
   }
 
   /**
@@ -90,14 +84,12 @@ public function suggestToFriend(Request $request){
 
 public function watched($id){
     $actUser = Auth::user();
-    $existent = Collection::where('user_id', $actUser->id)->where('film_id', $id)->get()->first();
-    if(count($existent) == 0){
-        Collection::create([
-            'user_id' => $actUser->id,
-            'film_id' => $id
-        ]);
+    $existent = $actUser->films()->where('film_id', $id)->get()->first();
+    $film = Film::find($id);
+    if(!$existent){
+        $actUser->films()->attach($film);
     } else {
-        $existent->delete();
+        $actUser->films()->detach($film);
     }
 
 }
