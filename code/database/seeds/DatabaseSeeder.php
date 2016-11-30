@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
          $this->call(PreferencesTableSeeder::class);
          $this->call(SuggestionsTableSeeder::class);
          $this->call(SubscriptionsTableSeeder::class);
+         $this->call(CategoriesTableSeeder::class);
 
     }
 }
