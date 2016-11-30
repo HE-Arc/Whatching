@@ -17,6 +17,9 @@ class CreateTableFilms extends Migration
             $table->increments('id');
             $table->integer('filmTMDB_id')->unsigned()->unique();
             $table->string('name');
+            $table->text('synopsis');
+            $table->date('released_date');
+            $table->string('poster_path');
             $table->timestamps();
         });
     }
