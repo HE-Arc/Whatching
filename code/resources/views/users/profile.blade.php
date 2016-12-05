@@ -12,14 +12,20 @@
   </p>
 
   @unless ($id == Auth::user()->id)
-  <p>
-    @if ($canSub)
-    <button id="subscribe-toggle" class="btn btn-primary">Subscribe</button>
-    @else
-    <button id="subscribe-toggle" class="btn btn-danger">Unsubscribed</button>
-    @endif
-  </p>
   <meta name="_token" content="{!! csrf_token() !!}" />
+  <p>
+    <form method="POST" action="{{ URL::route('subscriptionToggle') }}">
+    @if ($canSub)
+    <input type="submit" id="subscribe-toggle" class="btn btn-primary" value="Subscribe">
+    @else
+    <input type="submit" id="subscribe-toggle" class="btn btn-danger" value="Unsubscribe">
+    @endif
+    <input type="hidden" name="follower_id" value="{{Auth::user()->id}}">
+    <input type="hidden" name="followed_id" value="{{$id}}">
+    <input type="hidden" name="nojs" value="forthesakeofprogressivenhancement">
+    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+  </form>
+  </p>
   @endunless
 
 </div>
@@ -44,10 +50,10 @@ $("#subscribe-toggle").click(function (e) {
     success: function (data) {
       if(data.action == "sub"){
         $('#subscribe-toggle').attr('class', 'btn btn-danger');
-        $('#subscribe-toggle').html("Unsubscribed");
+        $('#subscribe-toggle').attr('value', 'Unsubscribed');
       }else{
         $('#subscribe-toggle').attr('class', 'btn btn-primary');
-        $('#subscribe-toggle').html("Subscribe");
+        $('#subscribe-toggle').attr('value', 'Subscribe');
       }
     },
     error: function (data) {
