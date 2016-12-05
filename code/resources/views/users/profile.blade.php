@@ -50,10 +50,10 @@ $("#subscribe-toggle").click(function (e) {
     success: function (data) {
       if(data.action == "sub"){
         $('#subscribe-toggle').attr('class', 'btn btn-danger');
-        $('#subscribe-toggle').html("Unsubscribed");
+        $('#subscribe-toggle').attr('value', 'Unsubscribed');
       }else{
         $('#subscribe-toggle').attr('class', 'btn btn-primary');
-        $('#subscribe-toggle').html("Subscribe");
+        $('#subscribe-toggle').attr('value', 'Subscribe');
       }
     },
     error: function (data) {
