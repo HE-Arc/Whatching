@@ -87,7 +87,7 @@ public function addNote(Request $request){
     $user = Auth::user();
     $user->notes()->create($request->only('film_id', 'stars', 'comment'));
 
-    return redirect('/film/'.$request->film_id.'');
+    return redirect()->route('moviePage', ['id' => $request->film_id]);
 }
 
 public function modifyNote(Request $request){
