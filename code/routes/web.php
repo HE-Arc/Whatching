@@ -33,4 +33,6 @@ Route::get('/film/search/{query}', 'FilmsController@search');
 Route::get('/suggest', 'FilmsController@suggestFilm');
 Route::post('/film/watched', 'FilmsController@watched');
 Route::post('/film/suggestToFriend', 'FilmsController@suggestToFriend');
+Route::post('/film/addNote', 'FilmsController@addNote');
+Route::post('/film/modifyNote', 'FilmsController@modifyNote');
 Route::post('/addToDB', 'FilmsController@addToDB');

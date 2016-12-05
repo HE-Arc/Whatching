@@ -67,10 +67,9 @@
   <div class="col-md-12">
 
     <h1>User's Reviews</h1>
-
     <section class="comment-list" id="film-reviews">
       @if ($film != null)
-      <button id="btnReview" class="btn btn-primary hidden"><i class="fa fa-pencil"></i> Write a review</button><br />
+      <button id="btnReview" class="btn btn-primary hidden" data-toggle="modal" data-target="#noteModal"><i class="fa fa-pencil"></i> Write a review</button><br />
       @forelse ($film->notes as $note)
       <!-- First Comment -->
       <article class="row">
@@ -118,6 +117,43 @@
     </section>
 
   </div>
+
+
+  <!-- MODAL NOTE -->
+  <div class="modal fade" id="noteModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <form id="noteForm" method="post" action="/film/{{ ($personalNote) ? "modifyNote" : "addNote" }}">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">Review this movie</h4>
+        </div>
+        <div class="modal-body">
+            <div class="panel panel-default">
+              <div class="panel-body">
+                <input type="hidden" name="film_id" value="{{$film->id}}" />
+                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                <div class="form-group">
+                    <label for="stars">Stars/10</label>
+                    <input id="stars" type="number" min="1" max="10" value="{{ ($personalNote) ? $personalNote->stars : "5" }}" name="stars" class="form-control"/ >
+                  </div>
+                <div class="form-group">
+                    <label for="comment">Comment</label>
+                    <textarea id="comment" name="comment" class="form-control" rows="5">{{ ($personalNote) ? $personalNote->comment : "" }}</textarea>
+                  </div>
+              </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="submit" id="submitNote" class="btn btn-primary">Confirm</button>
+        </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- END MODAL -->
   <script>
   $("#submitSuggest").click(function (e) {
 

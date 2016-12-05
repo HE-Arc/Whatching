@@ -26,7 +26,8 @@ class FilmsController extends Controller
     $user = Auth::user();
     $film = Film::find($id);
     $isWatched = $user->films()->where('film_id', $id)->exists();
-    return view('films.film', compact('id', 'film', 'user', 'isWatched'));
+    $personalNote = $user->notes()->where('film_id', $id)->first();
+    return view('films.film', compact('id', 'film', 'user', 'isWatched', 'personalNote'));
   }
 
 
@@ -80,6 +81,23 @@ public function suggestToFriend(Request $request){
   }
 
   return Response::json(['message' => 'Successfully added suggestion(s)', 'action' => 'addSugg']);
+}
+
+public function addNote(Request $request){
+    $user = Auth::user();
+    $user->notes()->create($request->only('film_id', 'stars', 'comment'));
+
+    return redirect('/film/'.$request->film_id.'');
+}
+
+public function modifyNote(Request $request){
+    $user = Auth::user();
+    $note = $user->notes()->where('film_id', $request->film_id)->first();
+    $note->stars = $request->stars;
+    $note->comment = $request->comment;
+
+    $note->save();
+    return redirect('/film/'.$request->film_id.'');
 }
 
 public function watched(Request $request){
