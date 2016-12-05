@@ -27,7 +27,7 @@ class FilmsController extends Controller
     $film = Film::find($id);
     $isWatched = $user->films()->where('film_id', $id)->exists();
     $personalNote = $user->notes()->where('film_id', $id)->first();
-    return view('films.film', compact('id', 'film', 'user', 'isWatched', 'personalNote'));
+    return view('films.film', compact('film', 'user', 'isWatched', 'personalNote'));
   }
 
 
@@ -97,7 +97,7 @@ public function modifyNote(Request $request){
     $note->comment = $request->comment;
 
     $note->save();
-    return redirect('/film/'.$request->film_id.'');
+    return redirect()->route('moviePage', ['id' => $request->film_id]);
 }
 
 public function watched(Request $request){
