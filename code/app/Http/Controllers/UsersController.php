@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth; //Pour pouvoir utiliser les méthodes de Auth
 
+use Illuminate\Foundation\Inspiring;
+
 use Response;
 
 use App\Http\Requests;
@@ -74,7 +76,8 @@ class UsersController extends Controller
     public function statistics($id){
       $user = User::find($id);
       if($user == null) $user = Auth::user();
-      return view('users.statistics', compact('user'));
+      $quote = Inspiring::quote();
+      return view('users.statistics', compact('user', 'quote'));
     }
 
     /**
@@ -119,11 +122,17 @@ class UsersController extends Controller
         DB::table('subscriptions')->insert(
           ['follower_id' => $request->follower_id, 'followed_id' => $request->followed_id]
         );
-        return Response::json(['message' => 'Successfully subscribed', 'action' => 'sub']);
+        $reponse = Response::json(['message' => 'Successfully subscribed', 'action' => 'sub']);
       }else{
         DB::table('subscriptions')->where('follower_id', $request->follower_id)->where('followed_id', $request->followed_id)->delete();
-        return Response::json(['message' => 'Successfully unsubscribed', 'action' => 'unsub']);
+        $reponse =  Response::json(['message' => 'Successfully unsubscribed', 'action' => 'unsub']);
       }
+      if(!isset($request->nojs)){
+        return $reponse;
+      }else{
+        return redirect()->route('userProfile', ['id' => $request->followed_id]);
+      }
+
 
     }
 
