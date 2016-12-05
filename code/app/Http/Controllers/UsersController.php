@@ -28,9 +28,12 @@ class UsersController extends Controller
     *
     */
     public function profile($id){
+      $user = User::find($id);
+      if($user == null) $user = Auth::user();
       $alreadySubscribed = DB::table('subscriptions')->where('follower_id', Auth::user()->id)->where('followed_id', $id)->first();
       $canSub = ($alreadySubscribed == null ? true : false);
-      return view('users.profile', compact('id', 'canSub'));
+      $quote = Inspiring::quote();
+      return view('users.profile', compact('user', 'quote', 'id', 'canSub'));
     }
 
     /**
@@ -67,17 +70,6 @@ class UsersController extends Controller
           return 0;
         }
         return (strtotime($a[0]) < strtotime($b[0])) ? 1 : -1;
-    }
-
-    /**
-    * Detailed logs and stats of a user
-    *
-    */
-    public function statistics($id){
-      $user = User::find($id);
-      if($user == null) $user = Auth::user();
-      $quote = Inspiring::quote();
-      return view('users.statistics', compact('user', 'quote'));
     }
 
     /**
