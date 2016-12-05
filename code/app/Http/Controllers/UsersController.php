@@ -119,11 +119,17 @@ class UsersController extends Controller
         DB::table('subscriptions')->insert(
           ['follower_id' => $request->follower_id, 'followed_id' => $request->followed_id]
         );
-        return Response::json(['message' => 'Successfully subscribed', 'action' => 'sub']);
+        $reponse = Response::json(['message' => 'Successfully subscribed', 'action' => 'sub']);
       }else{
         DB::table('subscriptions')->where('follower_id', $request->follower_id)->where('followed_id', $request->followed_id)->delete();
-        return Response::json(['message' => 'Successfully unsubscribed', 'action' => 'unsub']);
+        $reponse =  Response::json(['message' => 'Successfully unsubscribed', 'action' => 'unsub']);
       }
+      if(!isset($request->nojs)){
+        return $reponse;
+      }else{
+        return redirect()->route('userProfile', ['id' => $request->followed_id]);
+      }
+
 
     }
 

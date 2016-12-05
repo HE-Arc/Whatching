@@ -18,11 +18,11 @@ Route::get('/', 'PagesController@home'); // Root route will be either home or fe
 Route::get('/about', 'PagesController@about');
 
 // Users related routes
-Route::get('/user/{id}', 'UsersController@profile');
+Route::get('/user/{id}', 'UsersController@profile')->name('userProfile');
 Route::get('/user/{id}/stats', 'UsersController@statistics');
 Route::get('/user/{id}/films', 'UsersController@watchedFilms');
 Route::get('/user/search/{query}', 'UsersController@search');
-Route::post('/user/subscribeToggle', 'UsersController@subscribeToggle');
+Route::post('/user/subscribeToggle', 'UsersController@subscribeToggle')->name('subscriptionToggle');
 
 // Feed him
 Route::get('/feed', 'UsersController@feed');
