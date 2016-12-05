@@ -57,7 +57,7 @@
                   <div class="row" style="margin-top:45px;">
                     <div class="col-md-6">
                       <img src="/user-placeholder.png" class="img img-circle" width="40" />
-                      <a href="/user/{{$line_feed[2]->user->name}}">{{$line_feed[2]->user->name}}</a>
+                      <a href="/user/{{$line_feed[2]->user->id}}">{{$line_feed[2]->user->name}}</a>
                     </div>
                     <div class="col-md-6">
                       <div class="star-note text-right">
