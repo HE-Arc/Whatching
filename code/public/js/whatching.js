@@ -41,7 +41,16 @@ $(function(){
 });
 
 function setWatched(id) {
-    $.ajax('/watched/'+id, {
+    $.ajaxSetup({
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+      }
+    })
+    $.ajax('/film/watched', {
+        type: "POST",
+        data: {
+            film_id: id
+        },
         success: function(data, status, xhr){
             $("#btnWatched").toggleClass("btn-success");
             $("#btnReview").toggleClass("hidden");

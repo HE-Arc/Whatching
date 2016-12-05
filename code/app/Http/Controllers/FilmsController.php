@@ -82,9 +82,10 @@ public function suggestToFriend(Request $request){
   return Response::json(['message' => 'Successfully added suggestion(s)', 'action' => 'addSugg']);
 }
 
-public function watched($id){
+public function watched(Request $request){
+    $id = $request->film_id;
     $actUser = Auth::user();
-    $existent = $actUser->films()->where('film_id', $id)->get()->first();
+    $existent = $actUser->films()->where('film_id', $id)->exists();
     $film = Film::find($id);
     if(!$existent){
         $actUser->films()->attach($film);
