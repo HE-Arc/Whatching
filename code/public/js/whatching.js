@@ -6,7 +6,6 @@ $(function(){
           console.log(req.term);
           if(req.term.indexOf("@") == 0){
             //Searching a user
-            console.log("looking for a user...");
             var result;
             var usr = req.term.substring(1);
             if(usr != ""){

@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth; //Pour pouvoir utiliser les méthodes de Auth
 
+use Illuminate\Foundation\Inspiring;
+
 use Response;
 
 use App\Http\Requests;
@@ -74,7 +76,8 @@ class UsersController extends Controller
     public function statistics($id){
       $user = User::find($id);
       if($user == null) $user = Auth::user();
-      return view('users.statistics', compact('user'));
+      $quote = Inspiring::quote();
+      return view('users.statistics', compact('user', 'quote'));
     }
 
     /**

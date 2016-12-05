@@ -13,7 +13,7 @@
     <div class="col-md-10 col-sm-10">
       <h1>{{$user->name}}</h1>
       <p>
-        Hey this is my cool bio I love Star Trek !
+        {{$quote}}
       </p>
     </div>
   </div>
