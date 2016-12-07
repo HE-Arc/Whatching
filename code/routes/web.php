@@ -28,7 +28,7 @@ Route::post('/user/subscribeToggle', 'UsersController@subscribeToggle')->name('s
 Route::get('/feed', 'UsersController@feed');
 
 // Film related views
-Route::get('/film/{id}', 'FilmsController@film');
+Route::get('/film/{id}', 'FilmsController@film')->name('moviePage');
 Route::get('/film/search/{query}', 'FilmsController@search');
 Route::get('/suggest', 'FilmsController@suggestFilm');
 Route::post('/film/watched', 'FilmsController@watched');

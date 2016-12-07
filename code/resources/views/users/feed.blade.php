@@ -24,7 +24,7 @@
                   <p class="user-card-name">
                     <a href="/user/{{$line_feed[2]->source->id}}">{{$line_feed[2]->source->name}}</a>
                     suggested <a href="/film/{{$line_feed[2]->film->id}}">{{$line_feed[2]->film->name}}</a>
-                    to <a href="/user/{{$line_feed[2]->user->id}}">{{$line_feed[2]->user->name}}</a>.
+                    to <a href="{{route('userProfile', ['id' => $line_feed[2]->user->id])}}">{{$line_feed[2]->user->name}}</a>.
                   </p>
                   <p style="margin-top:50px;">
                   <img src="/user-placeholder.png" class="img img-circle" width="40" /> <i class="fa fa-arrow-right"></i> <img src="/user-placeholder.png" class="img img-circle" width="40" />
@@ -57,7 +57,7 @@
                   <div class="row" style="margin-top:45px;">
                     <div class="col-md-6">
                       <img src="/user-placeholder.png" class="img img-circle" width="40" />
-                      <a href="/user/{{$line_feed[2]->user->name}}">{{$line_feed[2]->user->name}}</a>
+                      <a href="{{route('userProfile', ['id' => $line_feed[2]->user->id])}}">{{$line_feed[2]->user->name}}</a>
                     </div>
                     <div class="col-md-6">
                       <div class="star-note text-right">
