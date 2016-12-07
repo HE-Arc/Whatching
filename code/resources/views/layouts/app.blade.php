@@ -30,7 +30,6 @@
 
     <!-- App specific script -->
     <script src="/js/config.js"></script>
-    <script src="/js/whatching.js"></script>
 
 </head>
 <body>
