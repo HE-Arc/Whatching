@@ -177,39 +177,4 @@
 
 </div>
 
-
-<script>
-
-  function subscribeTo(follower, followed){
-      console.log("Bonjour");
-      $.ajaxSetup({
-        headers: {
-          'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
-        }
-      })
-      
-      $.ajax({
-        type: "POST",
-        url: "/user/subscribeToggle",
-        data: {
-          follower_id: follower,
-          followed_id: followed
-        },
-        dataType: 'json',
-        success: function (data) {
-          if(data.action == "sub"){
-            $('#subscribe-toggle').attr('class', 'btn btn-danger');
-            $('#subscribe-toggle').attr('value', 'Unsubscribed');
-          }else{
-            $('#subscribe-toggle').attr('class', 'btn btn-primary');
-            $('#subscribe-toggle').attr('value', 'Subscribe');
-          }
-        },
-        error: function (data) {
-          console.log('Error:', data);
-        }
-    });
-}
-</script>
-
 @endsection
