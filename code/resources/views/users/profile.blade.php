@@ -23,11 +23,11 @@
         @unless ($id == Auth::user()->id)
         <meta name="_token" content="{!! csrf_token() !!}" />
         <p>
-          <form method="POST" action="{{ URL::route('subscriptionToggle') }}">
+          <form method="POST" onsubmit="return false;" action="{{ URL::route('subscriptionToggle') }}">
           @if ($canSub)
-          <input type="submit" id="subscribe-toggle" class="btn btn-primary" value="Subscribe">
+          <input type="submit" id="subscribe-toggle" class="btn btn-primary" onclick="subscribeTo({{Auth::user()->id}}, {{$id}})" value="Subscribe">
           @else
-          <input type="submit" id="subscribe-toggle" class="btn btn-danger" value="Unsubscribe">
+          <input type="submit" id="subscribe-toggle" class="btn btn-danger" onclick="subscribeTo({{Auth::user()->id}}, {{$id}})" value="Unsubscribe">
           @endif
           <input type="hidden" name="follower_id" value="{{Auth::user()->id}}">
           <input type="hidden" name="followed_id" value="{{$id}}">
@@ -163,7 +163,7 @@
           </div>
         </div>
         <div class="panel-footer text-right">
-          <a class="btn btn-primary btn-sm"><i class="fa fa-plus"></i>&nbsp;Follow</a>
+          <a class="btn btn-primary btn-sm" ><i class="fa fa-plus"></i>&nbsp;Follow</a>
           <a class="btn btn-primary btn-sm" href="/user/{{$user->id}}"><i class="fa fa-eye"></i>&nbsp;Voir le profil</a>
         </div>
       </div>
@@ -179,35 +179,37 @@
 
 
 <script>
-$("#subscribe-toggle").click(function (e) {
-  $.ajaxSetup({
-    headers: {
-      'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
-    }
-  })
-  e.preventDefault();
-  $.ajax({
-    type: "POST",
-    url: "/user/subscribeToggle",
-    data: {
-      follower_id: {{Auth::user()->id}},
-      followed_id: {{$id}}
-    },
-    dataType: 'json',
-    success: function (data) {
-      if(data.action == "sub"){
-        $('#subscribe-toggle').attr('class', 'btn btn-danger');
-        $('#subscribe-toggle').attr('value', 'Unsubscribed');
-      }else{
-        $('#subscribe-toggle').attr('class', 'btn btn-primary');
-        $('#subscribe-toggle').attr('value', 'Subscribe');
-      }
-    },
-    error: function (data) {
-      console.log('Error:', data);
-    }
-  });
-});
+
+  function subscribeTo(follower, followed){
+      console.log("Bonjour");
+      $.ajaxSetup({
+        headers: {
+          'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+        }
+      })
+      
+      $.ajax({
+        type: "POST",
+        url: "/user/subscribeToggle",
+        data: {
+          follower_id: follower,
+          followed_id: followed
+        },
+        dataType: 'json',
+        success: function (data) {
+          if(data.action == "sub"){
+            $('#subscribe-toggle').attr('class', 'btn btn-danger');
+            $('#subscribe-toggle').attr('value', 'Unsubscribed');
+          }else{
+            $('#subscribe-toggle').attr('class', 'btn btn-primary');
+            $('#subscribe-toggle').attr('value', 'Subscribe');
+          }
+        },
+        error: function (data) {
+          console.log('Error:', data);
+        }
+    });
+}
 </script>
 
 @endsection
