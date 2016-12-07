@@ -39,7 +39,7 @@
           </div>
           <div class="modal-body">
 
-            <form id="suggestForm">
+            <form id="suggestForm" onsubmit="return false;">
               @forelse ($user->followedUsers as $uf)
               <div class="panel panel-default">
                 <div class="panel-body" onclick="selectRow(this)" id="row-select-user-{{$uf->id}}">
@@ -55,7 +55,7 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            <button type="button" id="submitSuggest" class="btn btn-primary">Confirm</button>
+            <button type="button" id="submitSuggest" onclick="suggestMovie({{$film->id}}, {{Auth::user()->id}})" class="btn btn-primary">Confirm</button>
           </div>
         </div>
       </div>
@@ -154,56 +154,6 @@
   </div>
 
   <!-- END MODAL -->
-  <script>
-  $("#submitSuggest").click(function (e) {
-
-    var suggestionsIds = [];
-    $(':checkbox:checked').each(function(i){
-      suggestionsIds[i] = $(this).val();
-    });
-
-    if(suggestionsIds < 1){
-      alert("Choose someone !");
-    }else{
-
-      $.ajaxSetup({
-        headers: {
-          'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
-        }
-      })
-
-      e.preventDefault();
-      $.ajax({
-        type: "POST",
-        url: "/film/suggestToFriend",
-        data: {
-          user_ids: suggestionsIds,
-          film_id: {{$film->id}},
-          state_id: 1,
-          source_id: {{Auth::user()->id}}
-        },
-        dataType: 'json',
-        success: function (data) {
-          $('#suggestModal').modal('toggle');
-        },
-        error: function (data) {
-          console.log('Error:', data);
-        }
-      });
-    }
-  });
-
-  </script>
-
-  <script>
-    // Change panel color ad toggle the inner checkbox
-    function selectRow(elem){
-      $("#"+elem.id).toggleClass("selected-row");
-      var $tc = $("#"+elem.id).children().find('input:checkbox:first'),
-            tv = $tc.attr('checked');
-        $tc.attr('checked', !tv);
-    }
-  </script>
 
   @if ($isWatched)
   <script>

@@ -89,3 +89,47 @@ function subscribeTo(follower, followed){
       }
   });
 }
+
+// Change panel color ad toggle the inner checkbox
+function selectRow(elem){
+  $("#"+elem.id).toggleClass("selected-row");
+  var $tc = $("#"+elem.id).children().find('input:checkbox:first'),
+        tv = $tc.attr('checked');
+    $tc.attr('checked', !tv);
+}
+
+function suggestMovie(movid, myid){
+    var suggestionsIds = [];
+    $(':checkbox:checked').each(function(i){
+      suggestionsIds[i] = $(this).val();
+    });
+
+    if(suggestionsIds < 1){
+      alert("Choose someone !");
+    }else{
+
+      $.ajaxSetup({
+        headers: {
+          'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+        }
+      })
+
+      $.ajax({
+        type: "POST",
+        url: "/film/suggestToFriend",
+        data: {
+          user_ids: suggestionsIds,
+          film_id: movid,
+          state_id: 1,
+          source_id: myid
+        },
+        dataType: 'json',
+        success: function (data) {
+          $('#suggestModal').modal('toggle');
+        },
+        error: function (data) {
+          console.log('Error:', data);
+        }
+      });
+    }
+}
