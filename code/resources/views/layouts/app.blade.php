@@ -28,9 +28,6 @@
     <script src="/js/app.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
-    <!-- App specific script -->
-    <script src="/js/config.js"></script>
-
 </head>
 <body>
     <div id="app">
