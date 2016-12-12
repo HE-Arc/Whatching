@@ -16,6 +16,7 @@ class DatabaseSeeder extends Seeder
          $this->call(FilmsTableSeeder::class);
          $this->call(NotesTableSeeder::class);
          $this->call(PreferencesTableSeeder::class);
+         $this->call(StatesTableSeeder::class);
          $this->call(SuggestionsTableSeeder::class);
          $this->call(SubscriptionsTableSeeder::class);
          $this->call(CategoriesTableSeeder::class);
