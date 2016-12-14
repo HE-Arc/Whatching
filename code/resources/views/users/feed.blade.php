@@ -6,11 +6,6 @@
 @section('content')
   <div class="container">
 
-    <div class="row">
-      <div class="col-md-8 col-md-offset-2">
-        <h1>Feed</h1>
-      </div>
-    </div>
       @forelse ($feed as $line_feed)
 
         @if ($line_feed[1] == 0)
@@ -87,13 +82,27 @@
                     <a class="btn btn-primary btn-sm" href="/film/{{$line_feed[2]->film->id}}"><i class="fa fa-eye"></i>&nbsp;Go to the movie page</a>
                   </div>
                 </div>
-
               </div>
             </div>
           </div>
         @endif
         @empty
-        <p>Follow some people dude ! </p>
+
+<div class="col-md-6 col-md-offset-3">
+
+  <div class="panel panel-default text-center">
+    <div class="panel-body">
+      <br/>
+      <i class="fa fa-plus" style="font-size: 8em; color: #888;"></i>
+      <h1>Follow some people !</h1>
+      <p>You need a few friends to feed your feed.</p>
+      <p><b>To do so, search a user in the search bar starting with @</b></p>
+    </div>
+  </div>
+
+
+</div>
+
       @endforelse
 
   </div>

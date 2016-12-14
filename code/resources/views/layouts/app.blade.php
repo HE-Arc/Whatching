@@ -97,6 +97,7 @@
         @yield('content')
 
 
+<!--
       <div class="col-md-12 footer">
           <div class="container text-center">
 
@@ -106,6 +107,7 @@
 
           </div>
       </div>
+    -->
 
     </div>
 
