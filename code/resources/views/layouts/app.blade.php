@@ -101,7 +101,7 @@
           <div class="container text-center">
 
             <p>
-              Made with love mainly in the midlle of a night of december.
+              Made with love mainly in the middle of a night of december.
             </p>
 
           </div>
