@@ -40,7 +40,7 @@
           <div class="modal-body">
 
             <form id="suggestForm" onsubmit="return false;">
-              @forelse ($user->followedUsers as $uf)
+              @forelse ($suggestableUsers as $uf)
               <div class="panel panel-default">
                 <div class="panel-body" onclick="selectRow(this)" id="row-select-user-{{$uf->id}}">
                   <div id="checkbox-select">
