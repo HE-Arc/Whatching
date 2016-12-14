@@ -84,12 +84,11 @@
             <div class="panel-body">
               <header class="text-left">
                 <div class="comment-user"><i class="fa fa-user"></i> {{$note->user->name}}</div>
-                <time class="comment-date" datetime="16-12-2014 01:05"><i class="fa fa-clock-o"></i> Dec 16, 2014</time>
+                <time class="comment-date" datetime="{{$note->created_at->format('d-m-Y h:i')}}"><i class="fa fa-clock-o"></i> {{$note->created_at->format('M d, Y h:i')}}</time>
               </header>
               <div class="comment-post">
-                <p>
-                  {{ $note->comment }}
-                </p>
+                <span id="note{{$note->id}}"><p>{{ $note->comment }}</p></span>
+                <script>mdToHTML("<?php echo str_replace("\r\n", '\r\n<br />', $note->comment); ?>", "note{{$note->id}}");</script>
               </div>
 
               <div class="star-note text-right">

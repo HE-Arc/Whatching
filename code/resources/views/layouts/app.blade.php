@@ -14,7 +14,6 @@
     <link href="/css/app.css" rel="stylesheet">
     <link rel="stylesheet" href="/css/font-awesome.min.css">
     <link rel="stylesheet" href="/css/custom.css">
-
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
     <!-- Scripts -->
@@ -25,6 +24,7 @@
     </script>
 
     <!-- Scripts -->
+    <script src="https://cdn.rawgit.com/showdownjs/showdown/1.5.1/dist/showdown.min.js"></script>
     <script src="/js/app.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 

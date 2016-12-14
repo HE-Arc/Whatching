@@ -133,3 +133,9 @@ function suggestMovie(movid, myid){
       });
     }
 }
+
+var converter = new showdown.Converter();
+
+function mdToHTML(text, id){
+    $("#"+id).html(converter.makeHtml(text));
+}
