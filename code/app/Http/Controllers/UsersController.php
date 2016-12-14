@@ -89,6 +89,12 @@ class UsersController extends Controller
       return view('users.watchedFilms', compact('user', 'filmsNotes'));
     }
 
+
+    public function list(){
+      $users = User::all();
+      return view('users.list', compact('users'));
+    }
+
     /**
     * Search for users
     *
@@ -122,7 +128,12 @@ class UsersController extends Controller
       if(!isset($request->nojs)){
         return $reponse;
       }else{
-        return redirect()->route('userProfile', ['id' => $request->followed_id]);
+        if(!isset($request->userlist)){
+          return redirect()->route('userProfile', ['id' => $request->followed_id]);
+        }else{
+          return redirect()->route('usersList');
+        }
+
       }
 
 

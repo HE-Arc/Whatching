@@ -8,7 +8,6 @@
 <div class="col-md-12 top-whatching-header">
 
   <div class="container top-whatching-container">
-
     <div class="col-md-8 col-xs-12">
       <h1>Whatching</h1>
       <p class="lead">
@@ -16,11 +15,8 @@
         Subscribe to people, share movie suggestions and access to your stats
         and personal feed without all the standard social network obsolete content.
       </p>
-      <a href="{{url('/about')}}" class="btn btn-lg btn-danger">Learn more</a>
     </div>
-
   </div>
-
 </div>
 
 

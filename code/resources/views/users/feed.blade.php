@@ -96,10 +96,12 @@
       <i class="fa fa-plus" style="font-size: 8em; color: #888;"></i>
       <h1>Follow some people !</h1>
       <p>You need a few friends to feed your feed.</p>
-      <p><b>To do so, search a user in the search bar starting with @</b></p>
+      <p>
+      <a href="{{url('users')}}" class="btn btn-danger">List of Whatching users</a>
+    </p>
+      <p><b>Or you can search a user in the search bar starting with @</b></p>
     </div>
   </div>
-
 
 </div>
 
