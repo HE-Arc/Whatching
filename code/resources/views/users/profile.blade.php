@@ -18,6 +18,9 @@
         <p>
           {{$quote}}
         </p>
+        @foreach ($user->pendingSuggestions as $suggestion)
+          <p>test</p>
+        @endforeach
       </div>
       <div class="col-md-1 col-sm-1">
         @unless ($id == Auth::user()->id)
