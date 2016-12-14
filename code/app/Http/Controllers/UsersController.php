@@ -103,7 +103,7 @@ class UsersController extends Controller
     }
 
 
-    public function list(){
+    public function usersList(){
       $users = User::all();
       return view('users.list', compact('users'));
     }

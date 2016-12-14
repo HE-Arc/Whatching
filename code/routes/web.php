@@ -18,7 +18,7 @@ Route::get('/', 'PagesController@home'); // Root route will be either home or fe
 Route::get('/about', 'PagesController@about');
 
 // Users related routes
-Route::get('/users/', 'UsersController@list')->name('usersList');
+Route::get('/users/', 'UsersController@usersList')->name('usersList');
 Route::get('/user/{id}', 'UsersController@profile')->name('userProfile');
 Route::get('/user/{id}/stats', 'UsersController@statistics');
 Route::get('/user/{id}/films', 'UsersController@watchedFilms');

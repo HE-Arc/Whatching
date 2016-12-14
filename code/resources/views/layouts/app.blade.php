@@ -69,7 +69,10 @@
                                 </a>
 
                                 <ul class="dropdown-menu" role="menu">
+                                <li><a href="{{route('userProfile', ['id' => Auth::id()])}}">My profile</a></li>
+                                <li><a href="{{route('usersList')}}">Users</a></li>
                                     <li>
+
                                         <a href="{{ url('/logout') }}"
                                             onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -82,7 +85,7 @@
                                     </li>
                                 </ul>
                             </li>
-                            <li><a href="/suggest"><i class="fa fa-film" aria-hidden="true"></i>&nbsp;Suggest me !</a></li>
+                            <li><a href="/suggestions">My suggestions <span class="badge" style="background:#c0392b;color:white;">{{Auth::user()->pendingSuggestions->count()}}</span></a></li>
                         @endif
                     </ul>
                     <form class="navbar-form navbar-right">
