@@ -22,8 +22,12 @@ Route::get('/users/', 'UsersController@list')->name('usersList');
 Route::get('/user/{id}', 'UsersController@profile')->name('userProfile');
 Route::get('/user/{id}/stats', 'UsersController@statistics');
 Route::get('/user/{id}/films', 'UsersController@watchedFilms');
+Route::get('/suggestions', 'UsersController@suggestions');
 Route::get('/user/search/{query}', 'UsersController@search');
 Route::post('/user/subscribeToggle', 'UsersController@subscribeToggle')->name('subscriptionToggle');
+Route::post('/suggestions/{id}/accept', 'SuggestionsController@acceptSuggestion')->name('acceptSuggestion');
+Route::post('/suggestions/{id}/watched', 'SuggestionsController@watchedSuggestion')->name('watchedSuggestion');
+Route::post('/suggestions/{id}/refuse', 'SuggestionsController@refuseSuggestion')->name('refuseSuggestion');
 
 // Feed him
 Route::get('/feed', 'UsersController@feed');

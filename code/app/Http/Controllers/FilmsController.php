@@ -27,7 +27,14 @@ class FilmsController extends Controller
     $film = Film::find($id);
     $isWatched = $user->films()->where('film_id', $id)->exists();
     $personalNote = $user->notes()->where('film_id', $id)->first();
-    return view('films.film', compact('film', 'user', 'isWatched', 'personalNote'));
+    $followeds = $user->followedUsers;
+    $suggestableUsers = [];
+    foreach($followeds as $u){
+        if(!$u->films()->where('film_id', $id)->exists()){
+            array_push($suggestableUsers, $u);
+        }
+    }
+    return view('films.film', compact('film', 'user', 'isWatched', 'personalNote', 'suggestableUsers'));
   }
 
 
@@ -107,6 +114,11 @@ public function watched(Request $request){
     $film = Film::find($id);
     if(!$existent){
         $actUser->films()->attach($film);
+        $suggestions = $actUser->suggestions;
+        foreach($suggestions as $suggestion){
+          $suggestion->state_id = 3;
+          $suggestion->save();
+        }
     } else {
         $actUser->films()->detach($film);
     }

@@ -36,6 +36,19 @@ class UsersController extends Controller
       return view('users.profile', compact('user', 'quote', 'id', 'canSub'));
     }
 
+    public function suggestions(){
+      $user = Auth::user();
+      $pendingSuggestions = Suggestion::with('source', 'film', 'user')
+      ->where('suggestions.user_id', Auth::id())
+      ->where('suggestions.state_id', 1)->select('*')->get();
+
+      $acceptedSuggestions = Suggestion::with('source', 'film', 'user')
+      ->where('suggestions.user_id', Auth::id())
+      ->where('suggestions.state_id', 2)->select('*')->get();
+
+      return view('users.suggestions', compact('user', 'pendingSuggestions', 'acceptedSuggestions'));
+    }
+
     /**
     * The very very important feed for a user
     *
