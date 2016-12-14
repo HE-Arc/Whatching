@@ -75,7 +75,9 @@
               </div>
               <div class="panel-footer">
                 <blockquote style="margin-bottom:0px;">
-                  {{$line_feed[2]->comment}}
+                    <span id="comment{{$line_feed[2]->id}}">{{$line_feed[2]->comment}}</span>
+                    <script>mdToHTML("<?php echo str_replace("\r\n", '\r\n<br />',$line_feed[2]->comment); ?>", "comment{{$line_feed[2]->id}}");</script>
+
                 </blockquote>
                 <div class="row">
                   <div class="col-md-6">
