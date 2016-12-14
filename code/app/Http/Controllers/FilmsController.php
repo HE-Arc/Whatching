@@ -114,7 +114,7 @@ public function watched(Request $request){
     $film = Film::find($id);
     if(!$existent){
         $actUser->films()->attach($film);
-        $suggestions = $actUser->suggestions;
+        $suggestions = $actUser->suggestions()->where('film_id', $id)->get();
         foreach($suggestions as $suggestion){
           $suggestion->state_id = 3;
           $suggestion->save();
