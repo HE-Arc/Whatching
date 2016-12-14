@@ -14,6 +14,7 @@
     <link href="/css/app.css" rel="stylesheet">
     <link rel="stylesheet" href="/css/font-awesome.min.css">
     <link rel="stylesheet" href="/css/custom.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700,800" rel="stylesheet">
 
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
@@ -94,6 +95,18 @@
             </div>
         </nav>
         @yield('content')
+
+
+      <div class="col-md-12 footer">
+          <div class="container text-center">
+
+            <p>
+              Made with love mainly in the midlle of a night of december.
+            </p>
+
+          </div>
+      </div>
+
     </div>
 
 </body>
