@@ -6,10 +6,31 @@
 @section('content')
   <div class="container">
 
+<div class="col-md-10 col-md-offset-1 col-xs-12">
+    <div class="alert alert-info alert-dismissible" role="alert">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div class="row">
+        <div class="col-md-3">
+          <strong>Try to feed your feed!</strong>
+          </div>
+          <div class="col-md-2">
+            <a href="{{route('usersList')}}" class="btn btn-primary btn-sm btn-block">Add people</a>
+          </div>
+          <div class="col-md-2">
+            <a href="/film/2" class="btn btn-danger btn-sm btn-block">Watch & Review</a>
+          </div>
+          <div class="col-md-2">
+            <a href="http://www.facebook.com" target="_blank" class="btn btn-success btn-sm btn-block">Invite friends</a>
+          </div>
+      </div>
+    </div>
+  </div>
+
+
       @forelse ($feed as $line_feed)
 
         @if ($line_feed[1] == 0)
-          <div class="col-md-8 col-md-offset-2 col-xs-12">
+          <div class="col-md-10 col-md-offset-1 col-xs-12">
             <div class="panel panel-default">
               <div class="panel-body">
                 <div class="col-md-2 col-xs-3">
@@ -39,7 +60,7 @@
             </div>
           </div>
         @elseif ($line_feed[1] == 1)
-          <div class="col-md-8 col-md-offset-2 col-xs-12">
+          <div class="col-md-10 col-md-offset-1 col-xs-12">
             <div class="panel panel-default">
               <div class="panel-body">
                 <div class="col-md-2 col-xs-3">
