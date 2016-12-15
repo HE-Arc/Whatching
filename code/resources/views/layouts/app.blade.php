@@ -63,20 +63,25 @@
                             <li><a href="{{ url('/login') }}">Login</a></li>
                             <li><a href="{{ url('/register') }}">Register</a></li>
                         @else
+                            <li><a href="{{route('homepage')}}"><i class="fa fa-newspaper-o"></i>&nbsp; Feed</a></li>
+                            <li><a href="{{route('usersList')}}"><i class="fa fa-users"></i>&nbsp; Community</a></li>
+
+
+
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                    {{ Auth::user()->name }} <span class="caret"></span>
+                                   <i class="fa fa-user"></i>&nbsp; {{ Auth::user()->name }} <span class="caret"></span> <span class="badge" style="background:#c0392b;color:white;">{{Auth::user()->pendingSuggestions->count()}}</span>
                                 </a>
 
                                 <ul class="dropdown-menu" role="menu">
-                                <li><a href="{{route('userProfile', ['id' => Auth::id()])}}">My profile</a></li>
-                                <li><a href="{{route('usersList')}}">Users</a></li>
+                                <li><a href="{{route('userProfile', ['id' => Auth::id()])}}"><i class="fa fa-th-large"></i>&nbsp; Dashboard</a></li>
+                                  <li><a href="/suggestions"><i class="fa fa-thumbs-up"></i>&nbsp; My suggestions <span class="badge" style="background:#c0392b;color:white;">{{Auth::user()->pendingSuggestions->count()}}</span></a></li>
                                     <li>
 
                                         <a href="{{ url('/logout') }}"
                                             onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                            Logout
+                                            <i class="fa fa-times"></i>&nbsp; Logout
                                         </a>
 
                                         <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
@@ -85,7 +90,7 @@
                                     </li>
                                 </ul>
                             </li>
-                            <li><a href="/suggestions">My suggestions <span class="badge" style="background:#c0392b;color:white;">{{Auth::user()->pendingSuggestions->count()}}</span></a></li>
+
                         @endif
                     </ul>
                     <form class="navbar-form navbar-right">

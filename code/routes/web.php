@@ -14,7 +14,7 @@
 Auth::routes();
 
 // Static pages
-Route::get('/', 'PagesController@home'); // Root route will be either home or feed if connected
+Route::get('/', 'PagesController@home')->name('homepage'); // Root route will be either home or feed if connected
 Route::get('/about', 'PagesController@about');
 
 // Users related routes
