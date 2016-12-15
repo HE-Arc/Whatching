@@ -90,8 +90,10 @@
                     </ul>
                     <form class="navbar-form navbar-right">
                       <div class="form-group input-group ui-widget">
+                      @if (!Auth::guest())
                         <span class="input-group-addon" id="basic-addon"><span class="fa fa-search"></span> </span>
                         <input type="text" id="search-bar" name="search" class="form-control" placeholder="Search..." aria-describedby="basic-addon" />
+                      @endif
                       </div>
                     </form>
                 </div>
