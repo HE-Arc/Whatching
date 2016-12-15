@@ -6,31 +6,31 @@
 @section('content')
 
 <div class="col-md-12 top-whatching-film">
-  <div class="">
+  <div class="filter pad-header-film">
 
-  <div class="container">
+    <div class="container">
 
-    <div class="row">
-      <div class="col-md-3">
-        <img id="film-cover" src="http://image.tmdb.org/t/p/w780{{$film->poster_path}}" class="img img-responsive">
-      </div>
-
-      <div class="col-md-9 movie-title-case">
-        <h1 id="film-name">{{ $film->name }}</h1>
-
-        <div class="btn-group" role="group" aria-label="Basic example">
-          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#suggestModal"><i class="fa fa-thumbs-up" aria-hidden="true"></i>&nbsp;Suggest it</button>
-          <button type="button" id="btnWatched" class="btn btn-primary" onclick="setWatched({{$film->id}})"><i class="fa fa-eye" aria-hidden="true"></i>&nbsp;Watched</button>
-          <button type="button" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i>&nbsp;Add to watchlist</button>
+      <div class="row">
+        <div class="col-md-3 col-sm-3">
+          <img id="film-cover" src="http://image.tmdb.org/t/p/w780{{$film->poster_path}}" class="img img-responsive">
         </div>
 
-        <p id="film-synopsis">
-          {{ $film->synopsis }}
-        </p>
-      </div>
-    </div>
+        <div class="col-md-9 col-sm-9 movie-title-case">
+          <h1 id="film-name">{{ $film->name }}</h1>
 
-  </div>
+          <div class="btn-group" role="group" aria-label="Basic example">
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#suggestModal"><i class="fa fa-thumbs-up" aria-hidden="true"></i>&nbsp;Suggest it</button>
+            <button type="button" id="btnWatched" class="btn btn-primary" onclick="setWatched({{$film->id}})"><i class="fa fa-eye" aria-hidden="true"></i>&nbsp;Watched</button>
+            <button type="button" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i>&nbsp;Add to watchlist</button>
+          </div>
+
+          <p id="film-synopsis">
+            {{ $film->synopsis }}
+          </p>
+        </div>
+      </div>
+
+    </div>
   </div>
 </div>
 
@@ -73,56 +73,72 @@
 
 
   <div class="col-md-12">
-
-    <h1>User's Reviews</h1>
-    <section class="comment-list" id="film-reviews">
-      @if ($film != null)
-      <button id="btnReview" class="btn btn-primary hidden" data-toggle="modal" data-target="#noteModal"><i class="fa fa-pencil"></i> Write a review</button><br />
-      @forelse ($film->notes as $note)
-      <!-- First Comment -->
-      <article class="row">
-        <div class="col-md-2 col-sm-2 hidden-xs">
-          <figure class="thumbnail">
-            <img class="img-responsive" src="http://www.keita-gaming.com/assets/profile/default-avatar-c5d8ec086224cb6fc4e395f4ba3018c2.jpg" />
-            <figcaption class="text-center">{{$note->user->name}}</figcaption>
-          </figure>
-        </div>
-        <div class="col-md-10 col-sm-10">
-          <div class="panel panel-default arrow left">
-            <div class="panel-body">
-              <header class="text-left">
-                <div class="comment-user"><i class="fa fa-user"></i> {{$note->user->name}}</div>
-                <time class="comment-date" datetime="{{$note->created_at->format('d-m-Y h:i')}}"><i class="fa fa-clock-o"></i> {{$note->created_at->format('M d, Y h:i')}}</time>
-              </header>
-              <div class="comment-post">
-                <span id="note{{$note->id}}"><p>{{ $note->comment }}</p></span>
-                <script>mdToHTML("<?php echo str_replace("\r\n", '\r\n<br />', $note->comment); ?>", "note{{$note->id}}");</script>
-              </div>
-
-              <div class="star-note text-right">
-                @for ($i=1; $i < 11; $i++)
-                @if ($i <= $note->stars)
-                <i class="fa fa-star"></i>
-                @else
-                <i class="fa fa-star" style="color: grey;"></i>
-                @endif
-                @endfor
-              </div>
-
+    <br/>
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <h2 style="font-weight: 800;">Reviews from users</h2>
+        <hr/>
+        <section class="comment-list" id="film-reviews">
+          @if ($film != null)
+          <button id="btnReview" class="btn btn-primary btn-lg hidden" data-toggle="modal" data-target="#noteModal"><i class="fa fa-pencil"></i> Write a review</button><br />
+          @forelse ($film->notes as $note)
+          <!-- First Comment -->
+          <article class="row">
+            <div class="col-md-2 col-sm-2 hidden-xs">
+              <figure class="thumbnail">
+                <img class="img-responsive" src="http://www.keita-gaming.com/assets/profile/default-avatar-c5d8ec086224cb6fc4e395f4ba3018c2.jpg" />
+                <figcaption class="text-center">{{$note->user->name}}</figcaption>
+              </figure>
             </div>
+            <div class="col-md-10 col-sm-10">
+              <div class="panel panel-default arrow left">
+                <div class="panel-body">
+                  <header class="text-left">
+                    <div class="comment-user"><i class="fa fa-user"></i> {{$note->user->name}}</div>
+                    <time class="comment-date" datetime="{{$note->created_at->format('d-m-Y h:i')}}"><i class="fa fa-clock-o"></i> {{$note->created_at->format('M d, Y h:i')}}</time>
+                  </header>
+                  <div class="comment-post">
+                    <span id="note{{$note->id}}"><p>{{ $note->comment }}</p></span>
+                    <script>mdToHTML("<?php echo str_replace("\r\n", '\r\n<br />', $note->comment); ?>", "note{{$note->id}}");</script>
+                  </div>
+
+                  <div class="star-note text-right">
+                    @for ($i=1; $i < 11; $i++)
+                    @if ($i <= $note->stars)
+                    <i class="fa fa-star"></i>
+                    @else
+                    <i class="fa fa-star" style="color: grey;"></i>
+                    @endif
+                    @endfor
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </article>
+          @empty
+          <div class="col-md-6 col-md-offset-3">
+
+            <div class="panel panel-default text-center">
+              <div class="panel-body">
+                <br/>
+                <i class="fa fa-plus" style="font-size: 8em; color: #888;"></i>
+                <h1>Be the first!</h1>
+                <p>You can be the first to review this movie.</p>
+                <p><b>Add it to your watchlist and write a review !</b></p>
+              </div>
+            </div>
+
           </div>
-        </div>
-      </article>
-      @empty
-      <b> Not reviewed yet </b>
-      @endforelse
+          @endforelse
+          @else
+          <b> Not reviewed yet </b>
+          @endif
 
-      @else
-      <b> Not reviewed yet </b>
-      @endif
+        </section>
 
-    </section>
-
+      </div>
+    </div>
   </div>
 
 

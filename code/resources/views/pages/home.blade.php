@@ -6,15 +6,17 @@
 @section('content')
 
 <div class="col-md-12 top-whatching-header">
+<div class="filter pad-header-home">
+  <div class="container">
 
-  <div class="container top-whatching-container">
-    <div class="col-md-8 col-xs-12">
-      <h1>Whatching</h1>
-      <p class="lead">
-        A nano social network focused as much on users as on films.
-        Subscribe to people, share movie suggestions and access to your stats
-        and personal feed without all the standard social network obsolete content.
-      </p>
+      <div class="col-md-8 col-xs-12">
+        <h1>Whatching</h1>
+        <p class="lead">
+          A nano social network focused as much on users as on films.
+          Subscribe to people, share movie suggestions and access to your stats
+          and personal feed without all the standard social network obsolete content.
+        </p>
+      </div>
     </div>
   </div>
 </div>
