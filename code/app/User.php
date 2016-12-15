@@ -52,11 +52,11 @@ class User extends Authenticatable
     }
 
     public function followedUsers(){
-      return $this->belongsToMany(User::Class, 'subscriptions', 'follower_id', 'followed_id');
+      return $this->belongsToMany(User::Class, 'subscriptions', 'followed_id', 'follower_id');
     }
 
     public function followingUsers(){
-      return $this->belongsToMany(User::class, 'subscriptions', 'follower_id', 'follower_id');
+      return $this->belongsToMany(User::class, 'subscriptions', 'follower_id', 'followed_id');
     }
 
     public function films(){

@@ -21,7 +21,7 @@
           <p>
             <form method="POST" action="{{ URL::route('subscriptionToggle') }}">
 
-              @if (Auth::user()->followedUsers()->where('followed_id', $user->id)->exists())
+              @if (Auth::user()->followingUsers()->where('followed_id', $user->id)->exists())
               <input type="submit" id="subscribe-toggle" class="btn btn-danger" value="Unsubscribe">
               @else
               <input type="submit" id="subscribe-toggle" class="btn btn-primary" value="Subscribe">
