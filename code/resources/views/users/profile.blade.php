@@ -131,6 +131,63 @@
 
 </div>
 
+<div class="row">
+  <div class="panel panel-default">
+    <div class="panel-body">
+
+      <h2 style="font-weight: 800;">Notes and comments</h2>
+      <hr/>
+<div class="row">
+@forelse ($user->notes as $note)
+  <div class="col-md-6 col-xs-12">
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <div class="col-md-2 col-xs-3">
+          <img src="http://image.tmdb.org/t/p/w780{{$note->film->poster_path}}" class="film-cover-{{$note->film->id}} img img-responsive">
+        </div>
+        <div class="col-md-10 col-xs-9 vcenter">
+          <p class="user-card-name">
+            <a href="/film/{{$note->film->id}}">{{$note->film->name}}</a>
+          </p>
+          <div class="row" style="margin-top:45px;">
+            <div class="col-md-offset-6 col-md-6">
+              <div class="star-note text-right">
+                @for ($i=1; $i < 11; $i++)
+                  @if ($i <= $note->stars)
+                    <i class="fa fa-star"></i>
+                  @else
+                    <i class="fa fa-star" style="color: grey;"></i>
+                  @endif
+                @endfor
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="panel-footer">
+        <blockquote style="margin-bottom:0px;">
+            <span id="comment{{$note->id}}">{{$note->comment}}</span>
+            <script>mdToHTML("<?php echo str_replace("\r\n", '\r\n<br />',$note->comment); ?>", "comment{{$note->id}}");</script>
+
+        </blockquote>
+        <div class="row">
+          <div class="col-md-6">
+            <em>{{$note->created_at}}</em>
+          </div>
+          <div class="col-md-6 text-right">
+            <a class="btn btn-primary btn-sm" href="/film/{{$note->film->id}}"><i class="fa fa-eye"></i>&nbsp;Go to the movie page</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+@empty
+
+@endforelse
+</div>
+</div>
+</div>
+</div>
 
 <!--
 
