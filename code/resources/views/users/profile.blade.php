@@ -15,12 +15,10 @@
     </div> -->
     <div class="panel panel-default">
       <div class="panel-body">
-        <div class="col-md-12 col-sm-12">
+        <div class="col-md-10 col-sm-10">
           <h1 style="font-weight: 800;">{{$user->name}}</h1>
-          <hr/>
         </div>
-
-        <div class="col-md-1 col-sm-1">
+        <div class="col-md-2 col-sm-2">
           @unless ($id == Auth::user()->id)
           <meta name="_token" content="{!! csrf_token() !!}" />
           <p>
@@ -38,25 +36,27 @@
           </p>
           @endunless
         </div>
+
+
       </div>
 
 
-      <div class="row stat-row text-center">
+      <div class="row stat-row text-center stats-bloc">
         <div class="col-md-3 col-sm-3 col-xs-6">
           <h1>{{$user->films->count()}}</h1>
-          <h2>watched movies</h2>
+          <a href="#films-watched"><h2>watched movies</h2></a>
         </div>
         <div class="col-md-3 col-sm-3 col-xs-6">
           <h1>{{$user->notes->count()}}</h1>
-          <h2>reviews</h2>
+          <a href="#notes-comments"><h2>reviews</h2></a>
         </div>
         <div class="col-md-3 col-sm-3 col-xs-6">
           <h1>{{$user->followedUsers->count()}}</h1>
-          <h2>followers</h2>
+          <a href="#people-followed"><h2>followers</h2></a>
         </div>
         <div class="col-md-3 col-sm-3 col-xs-6">
           <h1>{{$user->followingUsers->count()}}</h1>
-          <h2>following</h2>
+          <a href="#people-following"><h2>following</h2></a>
         </div>
         <p>
           &nbsp; <!-- yess I am ugly -->
@@ -67,6 +67,7 @@
   </div>
 
   <div class="row">
+            <a name="films-watched"></a>
     <div class="panel panel-default">
       <div class="panel-body">
 
@@ -110,7 +111,6 @@
       @empty
 
       <div class="col-md-6 col-md-offset-3">
-
         <div class="panel panel-default text-center">
           <div class="panel-body">
             <br/>
@@ -132,6 +132,7 @@
 </div>
 
 <div class="row">
+    <a name="notes-comments"></a>
   <div class="panel panel-default">
     <div class="panel-body">
 
@@ -209,7 +210,7 @@
 -->
 
 <div class="row">
-
+  <a name="people-following"></a>
   <div class="panel panel-default">
     <div class="panel-body">
 
@@ -252,7 +253,7 @@
 
 
 <div class="row">
-
+    <a name="people-followed"></a>
   <div class="panel panel-default">
     <div class="panel-body">
 

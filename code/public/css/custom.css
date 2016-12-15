@@ -7,6 +7,10 @@ body, html{
   position:relative;
 }
 
+.stats-bloc h1{
+  font-weight: 800;
+}
+
 #film-name{
   font-weight: 800;
 }
