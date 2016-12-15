@@ -16,7 +16,7 @@
     <div class="panel panel-default">
       <div class="panel-body">
         <div class="col-md-12 col-sm-12">
-          <h1 style="font-weight: 800;">{{Auth::user()->name}}</h1>
+          <h1 style="font-weight: 800;">{{$user->name}}</h1>
           <hr/>
         </div>
 
