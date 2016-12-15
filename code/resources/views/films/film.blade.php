@@ -4,29 +4,37 @@
 
 
 @section('content')
-<div class="container">
 
-  <div class="row">
-    <div class="col-md-3">
-      <img id="film-cover" src="http://image.tmdb.org/t/p/w780{{$film->poster_path}}" class="img img-responsive">
-    </div>
+<div class="col-md-12 top-whatching-film">
+  <div class="">
 
-    <div class="col-md-9 movie-title-case">
-      <h1 id="film-name">{{ $film->name }}</h1>
+  <div class="container">
 
-      <div class="btn-group" role="group" aria-label="Basic example">
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#suggestModal"><i class="fa fa-thumbs-up" aria-hidden="true"></i>&nbsp;Suggest it</button>
-        <button type="button" id="btnWatched" class="btn btn-primary" onclick="setWatched({{$film->id}})"><i class="fa fa-eye" aria-hidden="true"></i>&nbsp;Watched</button>
-        <button type="button" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i>&nbsp;Add to watchlist</button>
+    <div class="row">
+      <div class="col-md-3">
+        <img id="film-cover" src="http://image.tmdb.org/t/p/w780{{$film->poster_path}}" class="img img-responsive">
       </div>
 
-      <p id="film-synopsis">
-        {{ $film->synopsis }}
-      </p>
+      <div class="col-md-9 movie-title-case">
+        <h1 id="film-name">{{ $film->name }}</h1>
+
+        <div class="btn-group" role="group" aria-label="Basic example">
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#suggestModal"><i class="fa fa-thumbs-up" aria-hidden="true"></i>&nbsp;Suggest it</button>
+          <button type="button" id="btnWatched" class="btn btn-primary" onclick="setWatched({{$film->id}})"><i class="fa fa-eye" aria-hidden="true"></i>&nbsp;Watched</button>
+          <button type="button" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i>&nbsp;Add to watchlist</button>
+        </div>
+
+        <p id="film-synopsis">
+          {{ $film->synopsis }}
+        </p>
+      </div>
     </div>
 
   </div>
+  </div>
+</div>
 
+<div class="container">
 
   <div class="row">
     <!-- Modal -->
@@ -44,8 +52,8 @@
               <div class="panel panel-default">
                 <div class="panel-body" onclick="selectRow(this)" id="row-select-user-{{$uf->id}}">
                   <div id="checkbox-select">
-                  <input type="checkbox" name="suggestList" value="{{$uf->id}}">{{$uf->name}}<br>
-                </div>
+                    <input type="checkbox" name="suggestList" value="{{$uf->id}}">{{$uf->name}}<br>
+                  </div>
                 </div>
               </div>
               @empty
@@ -123,30 +131,30 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <form id="noteForm" method="post" action="/film/{{ ($personalNote) ? "modifyNote" : "addNote" }}">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <h4 class="modal-title" id="myModalLabel">Review this movie</h4>
-        </div>
-        <div class="modal-body">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">Review this movie</h4>
+          </div>
+          <div class="modal-body">
             <div class="panel panel-default">
               <div class="panel-body">
                 <input type="hidden" name="film_id" value="{{$film->id}}" />
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 <div class="form-group">
-                    <label for="stars">Stars/10</label>
-                    <input id="stars" type="number" min="1" max="10" value="{{ ($personalNote) ? $personalNote->stars : "5" }}" name="stars" class="form-control"/ >
-                  </div>
+                  <label for="stars">Stars/10</label>
+                  <input id="stars" type="number" min="1" max="10" value="{{ ($personalNote) ? $personalNote->stars : "5" }}" name="stars" class="form-control"/ >
+                </div>
                 <div class="form-group">
-                    <label for="comment">Comment</label>
-                    <textarea id="comment" name="comment" class="form-control" rows="5">{{ ($personalNote) ? $personalNote->comment : "" }}</textarea>
-                  </div>
+                  <label for="comment">Comment</label>
+                  <textarea id="comment" name="comment" class="form-control" rows="5">{{ ($personalNote) ? $personalNote->comment : "" }}</textarea>
+                </div>
               </div>
             </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          <button type="submit" id="submitNote" class="btn btn-primary">Confirm</button>
-        </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="submit" id="submitNote" class="btn btn-primary">Confirm</button>
+          </div>
         </form>
       </div>
     </div>
@@ -156,8 +164,8 @@
 
   @if ($isWatched)
   <script>
-    $("#btnWatched").toggleClass("btn-success");
-    $("#btnReview").toggleClass("hidden");
+  $("#btnWatched").toggleClass("btn-success");
+  $("#btnReview").toggleClass("hidden");
   </script>
   @endif
 

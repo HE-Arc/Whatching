@@ -156,16 +156,16 @@
   <div class="panel panel-default">
     <div class="panel-body">
 
-      <h2 style="font-weight: 800;">People following {{Auth::user()->name}}</h2>
+      <h2 style="font-weight: 800;">People following {{$user->name}}</h2>
       <hr/>
 
-      @forelse ($user->followedUsers as $user)
+      @forelse ($user->followedUsers as $ufd)
       <div class="col-md-2 col-xs-2 text-center">
         <div class="panel panel-default">
           <div class="panel-body">
             <img src="/user-placeholder.png" class="img img-responsive img-circle" /><br/>
             <p class="user-card-name">
-              <a href="/user/{{$user->id}}">{{str_limit($user->name, $limit = 8, $end = '...')}}</a>
+              <a href="/user/{{$ufd->id}}">{{str_limit($ufd->name, $limit = 8, $end = '...')}}</a>
             </p>
           </div>
         </div>
@@ -199,22 +199,22 @@
   <div class="panel panel-default">
     <div class="panel-body">
 
-      <h2 style="font-weight: 800;">People followed by {{Auth::user()->name}}</h2>
+      <h2 style="font-weight: 800;">People followed by {{$user->name}}</h2>
       <hr/>
 
-      @forelse ($user->followingUsers as $user)
-      @if ($user->id != Auth::user()->id)
+      @forelse ($user->followingUsers as $ufr)
+
       <div class="col-md-2 col-xs-2 text-center">
         <div class="panel panel-default">
           <div class="panel-body">
             <img src="/user-placeholder.png" class="img img-responsive img-circle" /><br/>
             <p class="user-card-name">
-              <a href="/user/{{$user->id}}">{{str_limit($user->name, $limit = 8, $end = '...')}}</a>
+              <a href="/user/{{$ufr->id}}">{{str_limit($ufr->name, $limit = 8, $end = '...')}}</a>
             </p>
           </div>
         </div>
       </div>
-      @endif
+
       @empty
 
       <div class="col-md-6 col-md-offset-3">
