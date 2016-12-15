@@ -11,7 +11,7 @@
   @foreach ($filmsNotes as $filmNote)
     <div class="row">
       <div class="col-md-2 com-md-offset-2">
-        <img id="image_film" src="https://s-media-cache-ak0.pinimg.com/originals/83/89/7e/83897e857be104531da8a2e20e85c5cd.jpg" class="img img-responsive">
+        <img id="image_film" src="http://image.tmdb.org/t/p/w780{{$filmNote[0]['poster_path']}}" class="img img-responsive">
       </div>
       <div class="col-md-7 movie-title-case">
       <h1 id="title_film" >{{$filmNote[0]['name']}}</h1>
