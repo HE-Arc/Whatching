@@ -37,7 +37,8 @@
         </div>
 
         @if ($filmNote[1]['comment'] != null)
-          <blockquote>{{$filmNote[1]['comment']}}</blockquote>
+          <blockquote id="comment{{$filmNote[1]['id']}}">{{$filmNote[1]['comment']}}</blockquote>
+          <script>mdToHTML("<?php echo str_replace("\r\n", '\r\n<br />',$filmNote[1]['comment']); ?>", "comment{{$filmNote[1]['id']}}");</script>
         @endif
       @endif
       <p>
