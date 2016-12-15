@@ -57,6 +57,7 @@ class UsersController extends Controller
       $user = Auth::user();
       $feed = [];
 
+
       // Get suggestion given by followed people
       $suggestBy = Suggestion::with('source', 'film', 'user')
       ->join('subscriptions', 'source_id', '=', 'followed_id')
@@ -69,7 +70,7 @@ class UsersController extends Controller
       // Get notes given by followed people
       $notesBy = Note::with('user', 'film')
       ->join('subscriptions', 'notes.user_id', '=', 'followed_id')
-      ->where('follower_id', '=', Auth::id())->select('*', 'notes.created_at as date')->get();
+      ->where('follower_id', '=', Auth::id())->select('*','notes.id as id', 'notes.created_at as date')->get();
       foreach($notesBy as $note){
         array_push($feed, [$note['date'],1,$note]);
       }
