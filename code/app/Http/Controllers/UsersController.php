@@ -76,7 +76,9 @@ class UsersController extends Controller
       }
 
       uasort($feed, array('App\Http\Controllers\UsersController', 'date_compare'));
-      return view('users.feed', compact('user', 'feed'));
+
+      $random_film = Film::inRandomOrder()->first();
+      return view('users.feed', compact('user', 'feed', 'random_film'));
     }
 
     public function date_compare($a, $b)

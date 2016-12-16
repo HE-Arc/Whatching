@@ -17,7 +17,7 @@
             <a href="{{route('usersList')}}" class="btn btn-primary btn-sm btn-block">Add people</a>
           </div>
           <div class="col-md-2">
-            <a href="/film/2" class="btn btn-danger btn-sm btn-block">Watch & Review</a>
+            <a href="{{route('moviePage', ['id' => $random_film->id])}}" class="btn btn-danger btn-sm btn-block">Watch & Review</a>
           </div>
           <div class="col-md-2">
             <a href="http://www.facebook.com" target="_blank" class="btn btn-success btn-sm btn-block">Invite friends</a>
@@ -38,8 +38,8 @@
                 </div>
                 <div class="col-md-10 col-xs-9 vcenter">
                   <p class="user-card-name">
-                    <a href="/user/{{$line_feed[2]->source->id}}">{{$line_feed[2]->source->name}}</a>
-                    suggested <a href="/film/{{$line_feed[2]->film->id}}">{{$line_feed[2]->film->name}}</a>
+                    <a href="{{route('userProfile', ['id' => $line_feed[2]->source->id])}}">{{$line_feed[2]->source->name}}</a>
+                    suggested <a href="{{route('moviePage', ['id' => $line_feed[2]->film->id])}}">{{$line_feed[2]->film->name}}</a>
                     to <a href="{{route('userProfile', ['id' => $line_feed[2]->user->id])}}">{{$line_feed[2]->user->name}}</a>.
                   </p>
                   <p style="margin-top:50px;">
@@ -68,7 +68,7 @@
                 </div>
                 <div class="col-md-10 col-xs-9 vcenter">
                   <p class="user-card-name">
-                    <a href="/film/{{$line_feed[2]->film->id}}">{{$line_feed[2]->film->name}}</a>
+                    <a href="{{route('moviePage', ['id' => $line_feed[2]->film->id])}}">{{$line_feed[2]->film->name}}</a>
                   </p>
                   <div class="row" style="margin-top:45px;">
                     <div class="col-md-6">
@@ -100,7 +100,7 @@
                     <em>{{$line_feed[0]}}</em>
                   </div>
                   <div class="col-md-6 text-right">
-                    <a class="btn btn-primary btn-sm" href="/film/{{$line_feed[2]->film->id}}"><i class="fa fa-eye"></i>&nbsp;Go to the movie page</a>
+                    <a class="btn btn-primary btn-sm" href="{{route('moviePage', ['id' => $line_feed[2]->film->id])}}"><i class="fa fa-eye"></i>&nbsp;Go to the movie page</a>
                   </div>
                 </div>
               </div>
