@@ -18,26 +18,24 @@
         <div class="col-md-9 col-sm-9 movie-title-case">
           <h1 id="film-name">{{ $film->name }}</h1>
 
-          <div class="btn-group" role="group" aria-label="Basic example">
-
               <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#suggestModal"><i class="fa fa-thumbs-up" aria-hidden="true"></i>&nbsp;Suggest it</button>
 
-              <form class="" style="display:inline" method="post" action="{{route('filmWatched', ['id' => $film->id])}}">
+              <form method="post" style="display:inline" action="{{route('filmWatched', ['id' => $film->id])}}">
                 <button type="submit" name="submit" class="btn {{$isWatched ? "btn-success" : "btn-primary"}}"><i class="fa fa-eye" aria-hidden="true"></i> Watched </button>
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
               </form>
+
               @if (!$isInWatchlist && !$isWatched)
                 <form class="" style="display:inline" method="post" action="{{route('AddMovieToWatchList', ['id' => $film->id])}}">
-                  <button type="submit" name="submit" class="btn btn-primary">Add to my watchlist</button>
+                  <button type="submit" name="submit" class="btn btn-primary"><i class="fa fa-plus"></i>&nbsp; Add to my watchlist</button>
                   <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 </form>
               @elseif($isInWatchlist && !$isWatched)
                 <span class="label label-info" style="margin-left:30px;">This movie is in your watchlist !</span>
               @endif
 
-          </div>
-
           <p id="film-synopsis">
+            <br/>
             {{ $film->synopsis }}
           </p>
         </div>
