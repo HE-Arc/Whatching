@@ -7,6 +7,10 @@ body, html{
   position:relative;
 }
 
+.ui-menu{
+  z-index:101;
+}
+
 .stats-bloc h1{
   font-weight: 800;
 }

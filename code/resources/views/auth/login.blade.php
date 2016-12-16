@@ -3,7 +3,13 @@
 @section('content')
 <div class="container">
     <div class="row">
+
+
+
+
         <div class="col-md-8 col-md-offset-2" style="margin-top:20vh">
+          <div class="panel panel-default">
+      <div class="panel-body">
           <blockquote>
             <h1>Login on Whatching</h1>
             <footer>Or join the night's watch you fool !</footer>
@@ -59,6 +65,8 @@
                         </div>
                     </form>
                   </div>
+                </div>
+              </div>
     </div>
 </div>
 @endsection

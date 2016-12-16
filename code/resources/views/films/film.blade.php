@@ -91,7 +91,7 @@
         <hr/>
         <section class="comment-list" id="film-reviews">
           @if ($film != null)
-          <button id="btnReview" class="btn btn-primary btn-lg hidden" data-toggle="modal" data-target="#noteModal"><i class="fa fa-pencil"></i> Write a review</button><br />
+          <button id="btnReview" class="btn btn-primary btn-lg hidden" data-toggle="modal" data-target="#noteModal"><i class="fa fa-pencil"></i>&nbsp; {{$personalNote ? "Edit your review" : "Add a review"}}</button><br />
           @forelse ($film->notes as $note)
           <!-- First Comment -->
           <article class="row" name="note{{$note->id}}">

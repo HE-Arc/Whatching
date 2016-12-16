@@ -184,6 +184,23 @@
   </div>
 @empty
 
+<div class="col-md-6 col-md-offset-3">
+
+  <div class="panel panel-default text-center">
+    <div class="panel-body">
+      <br/>
+      <i class="fa fa-star" style="font-size: 8em; color: #888;"></i>
+      <h1>Rate movies !</h1>
+      <p>Add watched movies and review them !</p>
+      <p>
+    </p>
+      <p><b>Type the name of a movie you watched in the search bar ;)</b></p>
+    </div>
+  </div>
+
+</div>
+
+
 @endforelse
 </div>
 </div>

@@ -75,8 +75,9 @@
 
                                 <ul class="dropdown-menu" role="menu">
                                 <li><a href="{{route('userProfile', ['id' => Auth::id()])}}"><i class="fa fa-th-large"></i>&nbsp; Dashboard</a></li>
-                                  <li><a href="/suggestions"><i class="fa fa-thumbs-up"></i>&nbsp; My suggestions <span class="badge" style="background:#c0392b;color:white;">{{Auth::user()->pendingSuggestions->count()}}</span></a></li>
-                                    <li>
+                                <li><a href="/suggestions"><i class="fa fa-thumbs-up"></i>&nbsp; My suggestions <span class="badge" style="background:#c0392b;color:white;">{{Auth::user()->pendingSuggestions->count()}}</span></a></li>
+                                <li><a href="/suggestions#watchlist"><i class="fa fa-th-list"></i>&nbsp; My watchlist</a></li>
+                                  <li>
 
                                         <a href="{{ url('/logout') }}"
                                             onclick="event.preventDefault();
