@@ -34,7 +34,8 @@ class FilmsController extends Controller
             array_push($suggestableUsers, $u);
         }
     }
-    return view('films.film', compact('film', 'user', 'isWatched', 'personalNote', 'suggestableUsers'));
+    $isInWatchlist = $user->acceptedSuggestions()->where('film_id', $id)->exists();
+    return view('films.film', compact('film', 'user', 'isWatched', 'personalNote', 'suggestableUsers', 'isInWatchlist'));
   }
 
 
@@ -108,7 +109,7 @@ public function modifyNote(Request $request){
 }
 
 public function watched(Request $request){
-    $id = $request->film_id;
+    $id = $request->id;
     $actUser = Auth::user();
     $existent = $actUser->films()->where('film_id', $id)->exists();
     $film = Film::find($id);
@@ -122,7 +123,7 @@ public function watched(Request $request){
     } else {
         $actUser->films()->detach($film);
     }
-
+    return redirect()->back();
 }
 
 

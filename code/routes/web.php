@@ -28,7 +28,7 @@ Route::post('/user/subscribeToggle', 'UsersController@subscribeToggle')->name('s
 Route::post('/suggestions/{id}/accept', 'SuggestionsController@acceptSuggestion')->name('acceptSuggestion');
 Route::post('/suggestions/{id}/watched', 'SuggestionsController@watchedSuggestion')->name('watchedSuggestion');
 Route::post('/suggestions/{id}/refuse', 'SuggestionsController@refuseSuggestion')->name('refuseSuggestion');
-
+Route::post('/film/{id}/addToWatchlist', 'SuggestionsController@addToWatchlist')->name('AddMovieToWatchList');
 // Feed him
 Route::get('/feed', 'UsersController@feed');
 
@@ -36,7 +36,7 @@ Route::get('/feed', 'UsersController@feed');
 Route::get('/film/{id}', 'FilmsController@film')->name('moviePage');
 Route::get('/film/search/{query}', 'FilmsController@search');
 Route::get('/suggest', 'FilmsController@suggestFilm');
-Route::post('/film/watched', 'FilmsController@watched');
+Route::post('/film/watched', 'FilmsController@watched')->name('filmWatched');
 Route::post('/film/suggestToFriend', 'FilmsController@suggestToFriend');
 Route::post('/film/addNote', 'FilmsController@addNote');
 Route::post('/film/modifyNote', 'FilmsController@modifyNote');
