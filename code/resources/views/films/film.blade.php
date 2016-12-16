@@ -96,7 +96,7 @@
           <button id="btnReview" class="btn btn-primary btn-lg hidden" data-toggle="modal" data-target="#noteModal"><i class="fa fa-pencil"></i> Write a review</button><br />
           @forelse ($film->notes as $note)
           <!-- First Comment -->
-          <article class="row">
+          <article class="row" name="note{{$note->id}}">
             <div class="col-md-2 col-sm-2 hidden-xs">
               <figure class="thumbnail">
                 <img class="img-responsive" src="http://www.keita-gaming.com/assets/profile/default-avatar-c5d8ec086224cb6fc4e395f4ba3018c2.jpg" />

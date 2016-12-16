@@ -106,7 +106,7 @@
               <div class="col-md-12">
                 @if (strlen($line_feed[2]->comment) > 255)
 
-                <i><a href="{{route('moviePage', ['id' => $line_feed[2]->film->id])}}">Read more ...</a></i>
+                <i><a href="{{route('moviePage', ['id' => $line_feed[2]->film->id])}}#note{{$line_feed[2]->id}}">Read more ...</a></i>
 
                 @endif
                 <em style="color: #999;" class="pull-right">{{$line_feed[0]}}</em>
