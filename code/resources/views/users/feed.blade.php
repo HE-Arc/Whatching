@@ -53,7 +53,7 @@
       </div>
     </div>
   </div>
-  
+
   @elseif ($line_feed[1] == 1)
   <div class="col-md-10 col-md-offset-1 col-xs-12">
     <div class="panel panel-default">
@@ -106,7 +106,7 @@
               <div class="col-md-12">
                 @if (strlen($line_feed[2]->comment) > 255)
 
-                <i><a href="{{route('moviePage', ['id' => $line_feed[2]->film->id])}}">Lire la suite</a></i>
+                <i><a href="{{route('moviePage', ['id' => $line_feed[2]->film->id])}}">Read more ...</a></i>
 
                 @endif
                 <em style="color: #999;" class="pull-right">{{$line_feed[0]}}</em>
