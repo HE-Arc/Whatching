@@ -31,6 +31,21 @@ Your main stats are the number of watched movies, number of followers, of follow
 ![](http://infinit8.io/illustrations/whatching/stats.png)
 
 
+## Get notified
+
+When a new suggestion is done to you, a notification will appear in the main menu. It will be there until you accept or decline the suggestion !
+
+![](http://infinit8.io/illustrations/whatching/menu.png)
+
+
+## Always know what to do
+
+![](http://infinit8.io/illustrations/whatching/todo.png)
+
+The platform helps you to know what to do when you do not have content to display ;) Don't worry !
+
+![](http://infinit8.io/illustrations/whatching/watch.png)
+
 ## Docker, how to use
 
 Scripts currently works on Linux only.
