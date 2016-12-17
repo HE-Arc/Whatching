@@ -28,7 +28,7 @@ Your main stats are the number of watched movies, number of followers, of follow
 
 > Become the best Whatcher of the platform ! **Gotta watch them all!**
 
-![](http://infinit8.io/illustrations/whatching/stats.png)
+![](http://infinit8.io/illustrations/whatching/stats2.png)
 
 
 ## Get notified
