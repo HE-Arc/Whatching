@@ -1,17 +1,34 @@
-# Whatching
+![](http://infinit8.io/illustrations/whatching/head.png)
 
-A nano social network focused as much on users as on films. Subscribe to people, share movie suggestions and access to your stats and personal feed without all the standard social network obsolete content.
+## But why ?
+
+Because when you love movies you don't always know what to watch. The community is there to suggest you some of their favourite films so you will always have something to watch ! You can add the movies from other user's suggestions to your watchlist and review them when it's done.
 
 > A love story between you, other users and films.
 
-## Features
+With **Whatching** you can be sure that your feed will be composed with 100% of movie related content. No adds, no obsolete and deviant content. Only you and movies.
+
+## Main features
 
 + Authentication
 + Subscribe / Unsubscribe to other users
-+ Suggest a movie
-+ Get a movie suggestion
++ Suggest a movie to someone
 + Acces to your and other user's profile stats
-+ Access to detailed lists of watched movies, build your collection !
++ Access to detailed lists of watched movies and build your collection.
+
+## Feed your feed
+
+The main feed is composed of reviews and suggestions. It will maybe have more infos in the future. Everything is clickable on the feed. Movie names, usernames and Read More under long reviews
+
+![](http://infinit8.io/illustrations/whatching/reviewinfeed.png)
+
+## Higher your stats !
+
+Your main stats are the number of watched movies, number of followers, of following users and reviews.
+
+> Become the best Whatcher of the platform ! **Gotta watch them all!**
+
+![](http://infinit8.io/illustrations/whatching/stats.png)
 
 
 ## Docker, how to use
