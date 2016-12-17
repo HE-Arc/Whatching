@@ -109,6 +109,7 @@
       @endif
 
       @empty
+        @if($user->id == Auth::id())
 
       <div class="col-md-6 col-md-offset-3">
         <div class="panel panel-default text-center">
@@ -124,6 +125,16 @@
         </div>
 
       </div>
+    @else
+      <div class="col-md-6 col-md-offset-3">
+        <div class="panel panel-default text-center">
+          <div class="panel-body">
+            <p><b>The user has not seen movies.</b></p>
+          </div>
+        </div>
+
+      </div>
+    @endif
       @endforelse
     </div>
   </div>
@@ -183,6 +194,7 @@
     </div>
   </div>
 @empty
+  @if($user->id == Auth::id())
 
 <div class="col-md-6 col-md-offset-3">
 
@@ -199,6 +211,16 @@
   </div>
 
 </div>
+@else
+  <div class="col-md-6 col-md-offset-3">
+    <div class="panel panel-default text-center">
+      <div class="panel-body">
+        <p><b>The user has no reviews yet.</b></p>
+      </div>
+    </div>
+
+  </div>
+@endif
 
 
 @endforelse
@@ -207,24 +229,6 @@
 </div>
 </div>
 
-<!--
-
-<h2>Notes</h2>
-<table>
-<tr>
-<th>Film's id</th>
-<th>Comment</th>
-<th>Stars</th>
-</tr>
-@foreach ($user->notes as $note)
-<tr>
-<td>{{$note->id}}</td>
-<td>{{$note->comment}}</td>
-<td>{{$note->stars}}</td>
-</tr>
-@endforeach
-</table>
--->
 
 <div class="row">
   <a name="people-following"></a>
@@ -246,7 +250,7 @@
         </div>
       </div>
       @empty
-
+        @if($user->id == Auth::id())
       <div class="col-md-6 col-md-offset-3">
 
         <div class="panel panel-default text-center">
@@ -262,7 +266,16 @@
         </div>
 
       </div>
+    @else
+      <div class="col-md-6 col-md-offset-3">
+        <div class="panel panel-default text-center">
+          <div class="panel-body">
+            <p><b>Nobody follows this user.</b></p>
+          </div>
+        </div>
 
+      </div>
+    @endif
       @endforelse
     </div>
   </div>
@@ -291,6 +304,7 @@
       </div>
 
       @empty
+        @if($user->id == Auth::id())
 
       <div class="col-md-6 col-md-offset-3">
 
@@ -308,6 +322,16 @@
         </div>
 
       </div>
+    @else
+      <div class="col-md-6 col-md-offset-3">
+        <div class="panel panel-default text-center">
+          <div class="panel-body">
+            <p><b>The user follows nobody.</b></p>
+          </div>
+        </div>
+
+      </div>
+    @endif
 
       @endforelse
     </div>
