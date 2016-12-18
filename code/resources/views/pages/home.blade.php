@@ -54,7 +54,7 @@
       <p>
         Whatever, with a Whatching account you would always know what to watch !
       </p>
-      <a href="{{url('/signup')}}" class="btn btn-lg btn-danger">Signup</a>
+      <a href="{{url('/register')}}" class="btn btn-lg btn-danger">Signup</a>
       <a href="{{url('/login')}}" class="btn btn-lg btn-danger">Login</a>
     </div>
 
