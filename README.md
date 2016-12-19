@@ -46,6 +46,14 @@ The platform helps you to know what to do when you do not have content to displa
 
 ![](http://infinit8.io/illustrations/whatching/watch.png)
 
+## Installation
+
+You'll have to put your TMDb API KEY inside the environment variables or the .env file.
+
+```ini
+TMDB_API_KEY=...
+```
+
 ## Docker, how to use
 
 Scripts currently works on Linux only.
