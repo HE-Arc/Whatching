@@ -11,9 +11,9 @@
     <title>{{ config('app.name', 'Whatching') }}</title>
 
     <!-- Styles -->
-    <link href="/css/app.css" rel="stylesheet">
-    <link rel="stylesheet" href="/css/font-awesome.min.css">
-    <link rel="stylesheet" href="/css/custom.css">
+    <link href="{{ asset('/css/app.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('/css/font-awesome.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('/css/custom.css') }}">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700,800" rel="stylesheet">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
@@ -26,7 +26,7 @@
 
     <!-- Scripts -->
     <script src="https://cdn.rawgit.com/showdownjs/showdown/1.5.1/dist/showdown.min.js"></script>
-    <script src="/js/app.js"></script>
+    <script src="{{asset('/js/app.js') }}"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
 </head>
@@ -94,7 +94,8 @@
 
                         @endif
                     </ul>
-                    <form class="navbar-form navbar-right">
+                    <form class="navbar-form navbar-right" action="{{ url('film/search') }}"
+                          data-user-action="{{ url('user/search') }}">
                       <div class="form-group input-group ui-widget">
                       @if (!Auth::guest())
                         <span class="input-group-addon" id="basic-addon"><span class="fa fa-search"></span> </span>

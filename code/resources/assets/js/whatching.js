@@ -1,7 +1,14 @@
 $(function(){
-  $(document).ready(function(){
-    if(window.jQuery){
-      $("#search-bar").autocomplete({
+    $.ajaxSetup({
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+      }
+    })
+
+      var sb = $("#search-bar");
+      var url = sb.closest('form').attr('action');
+      var altUrl = sb.closest('form').data('user-action');
+      sb.autocomplete({
         source: function(req, res){
           console.log(req.term);
           if(req.term.indexOf("@") == 0){
@@ -9,7 +16,7 @@ $(function(){
             var result;
             var usr = req.term.substring(1);
             if(usr != ""){
-              $.ajax("/user/search/"+usr, {
+              $.ajax(atlUrl+"/"+usr, {
                 success: function(data, status, xhr){
                     res(data);
                 }
@@ -17,7 +24,7 @@ $(function(){
             }
           } else {
             var result;
-              $.ajax("/film/search/"+req.term, {
+              $.ajax(url+"/"+req.term, {
                 success: function(data, status, xhr){
                     res(data);
                 }
@@ -27,6 +34,7 @@ $(function(){
         select: function(e, ui){
           //Searching for an user
           if($('#search-bar').val().indexOf('@') == 0){
+            // FIXME: doesn't work when the root is not `/` -Yoan
             window.location.href = '/user/'+ui.item.id;
           } else {
             window.location.href = '/film/'+ui.item.id;
@@ -34,19 +42,10 @@ $(function(){
 
         }
       });
-    }
 
-
-
-  });
 });
 
 function setWatched(id) {
-    $.ajaxSetup({
-      headers: {
-        'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
-      }
-    })
     $.ajax('/film/watched', {
         type: "POST",
         data: {
@@ -60,13 +59,6 @@ function setWatched(id) {
 }
 
 function subscribeTo(follower, followed){
-    console.log("Bonjour");
-    $.ajaxSetup({
-      headers: {
-        'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
-      }
-    })
-
     $.ajax({
       type: "POST",
       url: "/user/subscribeToggle",
@@ -98,6 +90,8 @@ function selectRow(elem){
     $tc.attr('checked', !tv);
 }
 
+window.selectRow = selectRow;
+
 function suggestMovie(movid, myid){
     var suggestionsIds = [];
     $(':checkbox:checked').each(function(i){
@@ -107,12 +101,6 @@ function suggestMovie(movid, myid){
     if(suggestionsIds < 1){
       alert("Choose someone !");
     }else{
-
-      $.ajaxSetup({
-        headers: {
-          'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
-        }
-      })
 
       $.ajax({
         type: "POST",
@@ -134,8 +122,12 @@ function suggestMovie(movid, myid){
     }
 }
 
+window.suggestMovie = suggestMovie;
+
 var converter = new showdown.Converter();
 
 function mdToHTML(text, id){
     $("#"+id).html(converter.makeHtml(text));
 }
+
+window.mdToHTML = mdToHTML;

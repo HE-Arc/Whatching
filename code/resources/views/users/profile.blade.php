@@ -1,4 +1,4 @@
-<!-- Overview of a profile -->
+{{-- Overview of a profile --}}
 
 @extends('layouts.app')
 
@@ -30,6 +30,7 @@
               @endif
               <input type="hidden" name="follower_id" value="{{Auth::user()->id}}">
               <input type="hidden" name="followed_id" value="{{$id}}">
+              {{-- google X-Requested-With. -Yoan --}}
               <input type="hidden" name="nojs" value="forthesakeofprogressivenhancement">
               <input type="hidden" name="_token" value="{{ csrf_token() }}">
             </form>
@@ -83,7 +84,7 @@
                 <div class="col-md-12 col-xs-12 vcenter">
                   <img src="https://image.tmdb.org/t/p/w300_and_h450_bestv2/{{$film->poster_path}}" class="img img-responsive">
                   <p class="text-center movie-card-name">
-                    <a href="/film/{{$film->id}}">{{str_limit($film->name, $limit = 20, $end = '...')}}</a>
+                    <a href="{{ url('film/' . $film->id) }}">{{str_limit($film->name, $limit = 20, $end = '...')}}</a>
                   </p>
                 </div>
               </div>
@@ -102,7 +103,7 @@
 
 
       <div class="col-md-12">
-        <a href="/user/{{$user->id}}/films" class="btn btn-default" ><i class="fa fa-film"></i>&nbsp; See developed list</a>
+        <a href="{{ url('user/' . $user->id) }}/films" class="btn btn-default" ><i class="fa fa-film"></i>&nbsp; See developed list</a>
       </div>
 
 
@@ -159,7 +160,7 @@
         </div>
         <div class="col-md-10 col-xs-9 vcenter">
           <p class="user-card-name">
-            <a href="/film/{{$note->film->id}}">{{$note->film->name}}</a>
+            <a href="{{ url('film/' . $note->film->id) }}">{{$note->film->name}}</a>
           </p>
           <div class="row" style="margin-top:45px;">
             <div class="col-md-offset-6 col-md-6">
@@ -178,6 +179,7 @@
       </div>
       <div class="panel-footer">
         <blockquote style="margin-bottom:0px;">
+            {{-- Convert MD on the server side. -Yoan --}}
             <span id="comment{{$note->id}}">{{$note->comment}}</span>
             <script>mdToHTML("<?php echo str_replace("\r\n", '\r\n<br />',$note->comment); ?>", "comment{{$note->id}}");</script>
 
@@ -187,7 +189,7 @@
             <em>{{$note->created_at}}</em>
           </div>
           <div class="col-md-6 text-right">
-            <a class="btn btn-primary btn-sm" href="/film/{{$note->film->id}}"><i class="fa fa-eye"></i>&nbsp;Go to the movie page</a>
+            <a class="btn btn-primary btn-sm" href="{{ url('film/' . $note->film->id)}}"><i class="fa fa-eye"></i>&nbsp;Go to the movie page</a>
           </div>
         </div>
       </div>
@@ -242,9 +244,9 @@
       <div class="col-md-2 col-xs-2 text-center">
         <div class="panel panel-default">
           <div class="panel-body">
-            <img src="/user-placeholder.png" class="img img-responsive img-circle" /><br/>
+            <img src="{{ asset('user-placeholder.png') }}" class="img img-responsive img-circle" /><br/>
             <p class="user-card-name">
-              <a href="/user/{{$ufd->id}}">{{str_limit($ufd->name, $limit = 8, $end = '...')}}</a>
+              <a href="{{ url('user/' . $ufd->id) }}">{{str_limit($ufd->name, $limit = 8, $end = '...')}}</a>
             </p>
           </div>
         </div>
@@ -255,6 +257,7 @@
 
         <div class="panel panel-default text-center">
           <div class="panel-body">
+            {{-- Use CSS for layout, not br and empty p's. -Yoan --}}
             <br/>
             <i class="fa fa-users" style="font-size: 8em; color: #888;"></i>
             <h1>Be interesting !</h1>
@@ -287,6 +290,7 @@
   <div class="panel panel-default">
     <div class="panel-body">
 
+      {{-- Use CSS -Yoan --}}
       <h2 style="font-weight: 800;">People followed by {{$user->name}}</h2>
       <hr/>
 
@@ -295,9 +299,9 @@
       <div class="col-md-2 col-xs-2 text-center">
         <div class="panel panel-default">
           <div class="panel-body">
-            <img src="/user-placeholder.png" class="img img-responsive img-circle" /><br/>
+            <img src="{{ asset('/user-placeholder.png') }}" class="img img-responsive img-circle" /><br/>
             <p class="user-card-name">
-              <a href="/user/{{$ufr->id}}">{{str_limit($ufr->name, $limit = 8, $end = '...')}}</a>
+              <a href="{{ url('user/' . $ufr->id) }}">{{str_limit($ufr->name, $limit = 8, $end = '...')}}</a>
             </p>
           </div>
         </div>
