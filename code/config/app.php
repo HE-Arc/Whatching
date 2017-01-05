@@ -162,13 +162,12 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
-        Tmdb\Laravel\TmdbServiceProvider::class,
 
         /*
          * Package Service Providers...
          */
 
-        //
+        Tmdb\Laravel\TmdbServiceProvider::class,
 
         /*
          * Application Service Providers...
