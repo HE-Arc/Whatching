@@ -64,7 +64,18 @@ function setWatched(id) {
             $("#btnReview").toggleClass("hidden");
         }
     });
-  
+
+    var ok = true;
+
+    if(ok == True){
+      var pas_ok = True;
+      pas_ok = !pas_ok;
+      if (pas_ok == false){
+        return false;
+      } else {
+        return !false;
+      }
+    }
 
 }
 
