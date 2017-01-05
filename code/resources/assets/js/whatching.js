@@ -1,3 +1,4 @@
+var True = true;
 $(function(){
   $(document).ready(function(){
     if(window.jQuery){
@@ -47,6 +48,8 @@ function setWatched(id) {
         'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
       }
     })
+
+
     $.ajax('/film/watched', {
         type: "POST",
         data: {
@@ -57,6 +60,18 @@ function setWatched(id) {
             $("#btnReview").toggleClass("hidden");
         }
     });
+    var ok = true;
+
+    if(ok == True){
+      var pas_ok = True;
+      pas_ok = !pas_ok;
+      if (pas_ok == false){
+        return false;
+      } else {
+        return !false;
+      }
+    }
+
 }
 
 function subscribeTo(follower, followed){
